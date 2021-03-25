@@ -54,7 +54,7 @@ export default {
       var navbarBreakPoint = 992;
       var navbarCustomClasses = {
         default: {
-          variant: "navbar-light",
+          variant: "navbar-dark",
           classes: "pt-lg-4",
         },
         alt: {
