@@ -1,0 +1,21 @@
+.btn-landing-primary {
+  background-color: var(--color-landing-primary);
+  color: var(--color-white);
+}
+
+.btn-landing-primary:hover {
+  background-color: var(--color-landing-primary);
+  color: var(--color-white);
+}
+
+.btn-outline-landing-primary {
+  color: var(--color-landing-primary);
+  background-color: var(--color-white);
+  border-color: var(--color-landing-primary);
+}
+
+.btn-outline-landing-primary:hover {
+  color: var(--color-white);
+  background-color: var(--color-landing-primary);
+  border-color: var(--color-landing-primary);
+}
