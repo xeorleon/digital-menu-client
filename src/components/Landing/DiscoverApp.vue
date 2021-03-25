@@ -8,13 +8,13 @@
     <div class="app-preview-slider-wrapper">
       <swiper class="swiper app-preview-slider" :options="swiperOptions">
         <swiper-slide>
-          <img src="@/assets/landing-img.png" alt="" />
+          <img src="@/assets/landing-img.png" alt="" class="img-fluid cursor-pointer" />
         </swiper-slide>
         <swiper-slide>
-          <img src="@/assets/landing-img.png" alt="" />
+          <img src="@/assets/landing-img.png" alt="" class="img-fluid cursor-pointer" />
         </swiper-slide>
         <swiper-slide>
-          <img src="@/assets/landing-img.png" alt="" />
+          <img src="@/assets/landing-img.png" alt="" class="img-fluid cursor-pointer" />
         </swiper-slide>
         <div class="swiper-pagination app-pagination" slot="pagination"></div>
       </swiper>
