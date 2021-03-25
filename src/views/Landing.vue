@@ -1,12 +1,12 @@
 <template>
-  <div class="landing light-style">
+  <div class="landing light-style" style="height: 30000px">
     <b-navbar class="landing-navbar pt-lg-4" toggleable="lg" type="dark" fixed="top">
       <b-container fluid class="px-3">
         <b-navbar-brand to="/" class="text-big font-weight-bolder line-height-1 text-expanded py-3">LANDING</b-navbar-brand>
         <b-navbar-toggle target="landing-navbar-collapse"></b-navbar-toggle>
         <b-collapse id="landing-navbar-collapse" is-nav>
           <b-navbar-nav class="align-items-lg-center ml-auto">
-            <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Özellikler</b-nav-item>
+            <b-nav-item href="#features" is="a" class="anchor-link nav-link nav-item">Özellikler</b-nav-item>
             <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Ekran Görüntüleri</b-nav-item>
             <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Fiyatlandırma</b-nav-item>
             <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4">
@@ -34,11 +34,83 @@
         </b-row>
       </b-container>
     </b-jumbotron>
+    <div class="theme-bg-white">
+      <div class="landing-block pb-5">
+        <b-container class="px-3">
+          <b-col md="10" lg="8" xl="7" class="text-center p-0 mx-auto">
+            <div class="display-4 text-landing-primary mb-4">
+              <i class="lnr lnr-rocket"></i>
+            </div>
+            <h1 class="display-5 font-secondary font-weight-semibold mb-5">Ultimate Tool for Professionals</h1>
+            <div class="custom-text-muted">
+              Lorem ipsum dolor sit amet, ad eam consul vituperata. Cum assum inimicus an, his ne liber aeterno debitis. Te his iudico tollit efficiendi. Eu harum volumus pri, oporteat probatus disputationi id his. Mei in vidit mollis mediocrem, cum
+              ad suas democritum, ea eos e ligendi nominati volutpat.
+            </div>
+          </b-col>
+        </b-container>
+      </div>
+      <div class="landing-separator-stripes my-4"></div>
+    </div>
+    <div id="features" class="landing-block">
+      <b-container class="px-3">
+        <b-col md="10" lg="8" xl="7" class="text-center p-0 mx-auto">
+          <div class="text-center custom-text-muted text-small font-weight-bold mb-3">FEATURES</div>
+          <h1 class="display-5 font-secondary font-weight-semibold mb-4">Everything That You Need In One App</h1>
+          <div class="custom-text-muted mb-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur at nisi sapiente voluptatibus facilis eaque quia deserunt reiciendis in? Culpa excepturi ab dicta voluptates reiciendis quis enim numquam, doloribus distinctio.
+          </div>
+        </b-col>
+        <hr class="landing-separator border-light mx-auto" />
+        <b-row class="text-center">
+          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
+          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
+          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
+          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
+          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
+          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
+        </b-row>
+      </b-container>
+    </div>
+    <div id="screenshots" class="landing-block theme-bg-white">
+      <b-container class="px-3">
+        <div class="text-center text-small font-weight-bold mb-3 custom-text-muted">SCREENSHOTS</div>
+        <h1 class="display-4 font-secondary text-center font-weight-semibold">Discover The App</h1>
+      </b-container>
+      <hr class="landing-separator border-landing-primary mx-auto mt-5 mb-4" />
+      <div class="app-preview-slider-wrapper">
+        <swiper class="swiper app-preview-slider" :options="swiperOptions">
+          <swiper-slide>
+            <img src="@/assets/landing-img.png" alt="" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="@/assets/landing-img.png" alt="" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="@/assets/landing-img.png" alt="" />
+          </swiper-slide>
+          <div class="swiper-pagination app-pagination" slot="pagination"></div>
+        </swiper>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Feature from "../components/Landing/Feature.vue";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "swiper/swiper-bundle.css";
 export default {
+  components: { Feature, Swiper, SwiperSlide },
+  data() {
+    return {
+      swiperOptions: {
+        pagination: {
+          el: ".app-pagination",
+          dynamicBullets: true,
+        },
+      },
+    };
+  },
   created() {
     document.addEventListener("scroll", this.handleScroll);
   },
@@ -75,7 +147,6 @@ export default {
         container.classList.add("container");
         loginBtn.classList.add("btn-landing-primary");
         loginBtn.classList.remove("btn-outline-light");
-        console.log(loginBtn);
       } else if (scrollTop <= navbarScrollThreshold && navbar.classList.contains("landing-navbar-alt")) {
         navbar.classList.remove("landing-navbar-alt");
         navbar.classList.add(navbarCustomClasses.default.classes);
@@ -186,10 +257,39 @@ hr.landing-separator {
   width: calc(100% + 1.5rem);
 }
 
+.app-preview-slider {
+  padding-top: 3rem !important;
+  padding-bottom: 5rem !important;
+}
+
+.app-preview-slider-wrapper {
+  padding: 0 1rem;
+}
+
+.app-preview-slider .swiper-slide {
+  text-align: center;
+}
+
+.app-preview-slider .swiper-slide img {
+  opacity: 0.5;
+  transition: all 0.4s;
+}
+
+.app-preview-slider .swiper-slide-active img {
+  opacity: 1;
+}
+
 @media (min-width: 992px) {
-  .landing-block {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+  .app-preview-slider-wrapper {
+    padding: 0;
+  }
+  .app-preview-slider .swiper-slide img {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
+  }
+  .app-preview-slider .swiper-slide-active img {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
 }
 
