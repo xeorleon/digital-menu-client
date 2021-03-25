@@ -7,7 +7,7 @@
         <b-collapse id="landing-navbar-collapse" is-nav>
           <b-navbar-nav class="align-items-lg-center ml-auto">
             <b-nav-item href="#features" is="a" class="anchor-link nav-link nav-item">Özellikler</b-nav-item>
-            <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Ekran Görüntüleri</b-nav-item>
+            <b-nav-item href="#screenshots" is="a" class="anchor-link nav-link nav-item">Ekran Görüntüleri</b-nav-item>
             <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Fiyatlandırma</b-nav-item>
             <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4">
               <b-link to="/login" class="btn-login anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
@@ -72,45 +72,18 @@
       </b-container>
     </div>
     <div id="screenshots" class="landing-block theme-bg-white">
-      <b-container class="px-3">
-        <div class="text-center text-small font-weight-bold mb-3 custom-text-muted">SCREENSHOTS</div>
-        <h1 class="display-4 font-secondary text-center font-weight-semibold">Discover The App</h1>
-      </b-container>
-      <hr class="landing-separator border-landing-primary mx-auto mt-5 mb-4" />
-      <div class="app-preview-slider-wrapper">
-        <swiper class="swiper app-preview-slider" :options="swiperOptions">
-          <swiper-slide>
-            <img src="@/assets/landing-img.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/landing-img.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/landing-img.png" alt="" />
-          </swiper-slide>
-          <div class="swiper-pagination app-pagination" slot="pagination"></div>
-        </swiper>
-      </div>
+      <discover-app />
     </div>
   </div>
 </template>
 
 <script>
 import Feature from "../components/Landing/Feature.vue";
-import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-import "swiper/swiper-bundle.css";
+
+import DiscoverApp from "../components/Landing/DiscoverApp.vue";
 export default {
-  components: { Feature, Swiper, SwiperSlide },
-  data() {
-    return {
-      swiperOptions: {
-        pagination: {
-          el: ".app-pagination",
-          dynamicBullets: true,
-        },
-      },
-    };
-  },
+  components: { Feature, DiscoverApp },
+
   created() {
     document.addEventListener("scroll", this.handleScroll);
   },
@@ -166,7 +139,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .landing-navbar {
   transition: all 0.2s;
 }
@@ -255,42 +228,6 @@ hr.landing-separator {
 
 .light-style .ui-hero > .container > .row {
   width: calc(100% + 1.5rem);
-}
-
-.app-preview-slider {
-  padding-top: 3rem !important;
-  padding-bottom: 5rem !important;
-}
-
-.app-preview-slider-wrapper {
-  padding: 0 1rem;
-}
-
-.app-preview-slider .swiper-slide {
-  text-align: center;
-}
-
-.app-preview-slider .swiper-slide img {
-  opacity: 0.5;
-  transition: all 0.4s;
-}
-
-.app-preview-slider .swiper-slide-active img {
-  opacity: 1;
-}
-
-@media (min-width: 992px) {
-  .app-preview-slider-wrapper {
-    padding: 0;
-  }
-  .app-preview-slider .swiper-slide img {
-    -webkit-transform: scale(0.75);
-    transform: scale(0.75);
-  }
-  .app-preview-slider .swiper-slide-active img {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {

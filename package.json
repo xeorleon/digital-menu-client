@@ -16,7 +16,7 @@
     "linearicons": "^1.0.2",
     "pace-js": "^1.2.4",
     "sass-loader": "^11.0.1",
-    "swiper": "^6.5.0",
+    "swiper": "^5.3.8",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.2.0",
