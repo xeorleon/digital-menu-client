@@ -1,7 +1,5 @@
 <template>
-  <div class="page-loader">
-    <div class="bg-landing-primary"></div>
-  </div>
+  <div class="page-loader"></div>
 </template>
 
 <script>
