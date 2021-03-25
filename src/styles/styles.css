@@ -1,3 +1,25 @@
+@import "variables.css";
+
+/* Reset CSS Start */
+*,
+*:before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+/* Reset CSS End */
+
 .btn-landing-primary {
   background-color: var(--color-landing-primary);
   color: var(--color-white);

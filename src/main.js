@@ -6,8 +6,8 @@ import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "pace-js/pace-theme-default.min.css";
-import "./variables.css";
-import "./styles.css";
+import "@/styles/variables.css";
+import "@/styles/styles.css";
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
