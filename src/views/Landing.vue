@@ -1,5 +1,5 @@
 <template>
-  <div class="landing light-style" style="height: 30000px">
+  <div class="landing light-style">
     <b-navbar class="landing-navbar pt-lg-4" toggleable="lg" type="dark" fixed="top">
       <b-container fluid class="px-3">
         <b-navbar-brand to="/" class="text-big font-weight-bolder line-height-1 text-expanded py-3">LANDING</b-navbar-brand>
@@ -34,7 +34,7 @@
         </b-row>
       </b-container>
     </b-jumbotron>
-    <div class="theme-bg-white">
+    <div class="bg-white">
       <div class="landing-block pb-5">
         <b-container class="px-3">
           <b-col md="10" lg="8" xl="7" class="text-center p-0 mx-auto">
@@ -71,7 +71,7 @@
         </b-row>
       </b-container>
     </div>
-    <div id="screenshots" class="landing-block theme-bg-white">
+    <div id="screenshots" class="landing-block bg-white">
       <discover-app />
     </div>
     <b-container class="landing-block px-3">
@@ -82,9 +82,16 @@
         <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
         <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
         <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
-        <rocket/>
       </b-row>
     </b-container>
+    <div class="bg-white">
+      <b-container id="pricing" class="landing-block px-3">
+        <div class="text-center custom-text-muted text-small font-weight-bold mb-3">PRICING</div>
+        <h1 class="display-5 font-secondary text-center font-weight-semibold">Pay Only for What You Need</h1>
+        <hr class="landing-separator border-primary my-5 mx-auto" />
+        <pricing :subscriptionTypes="subscriptionType" />
+      </b-container>
+    </div>
   </div>
 </template>
 
@@ -92,9 +99,28 @@
 import Feature from "../components/Landing/Feature.vue";
 import DiscoverApp from "../components/Landing/DiscoverApp.vue";
 import HowItWorks from "../components/Landing/HowItWorks.vue";
-import { rocket } from 'ionicons/icons'
+import Pricing from "../components/Landing/Pricing.vue";
 export default {
-  components: { Feature, DiscoverApp, HowItWorks, rocket },
+  components: { Feature, DiscoverApp, HowItWorks, Pricing },
+
+  data() {
+    return {
+      subscriptionType: [
+        {
+          title: "test1",
+          price: 5,
+        },
+        {
+          title: "test2",
+          price: 10,
+        },
+        {
+          title: "test3",
+          price: 15,
+        },
+      ],
+    };
+  },
 
   created() {
     document.addEventListener("scroll", this.handleScroll);
