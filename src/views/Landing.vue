@@ -74,15 +74,27 @@
     <div id="screenshots" class="landing-block theme-bg-white">
       <discover-app />
     </div>
+    <b-container class="landing-block px-3">
+      <div class="text-center custom-text-muted text-small font-weight-bold mb-3">INSIGHTS</div>
+      <h1 class="display-5 font-secondary text-center font-weight-semibold">How It Works</h1>
+      <hr class="landing-separator border-success mx-auto mt-5 mb-4" />
+      <b-row class="text-center">
+        <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
+        <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
+        <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
+        <rocket/>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
 import Feature from "../components/Landing/Feature.vue";
-
 import DiscoverApp from "../components/Landing/DiscoverApp.vue";
+import HowItWorks from "../components/Landing/HowItWorks.vue";
+import { rocket } from 'ionicons/icons'
 export default {
-  components: { Feature, DiscoverApp },
+  components: { Feature, DiscoverApp, HowItWorks, rocket },
 
   created() {
     document.addEventListener("scroll", this.handleScroll);
