@@ -8,7 +8,8 @@
           <b-navbar-nav class="align-items-lg-center ml-auto">
             <b-nav-item href="#features" is="a" class="anchor-link nav-link nav-item">Özellikler</b-nav-item>
             <b-nav-item href="#screenshots" is="a" class="anchor-link nav-link nav-item">Ekran Görüntüleri</b-nav-item>
-            <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Fiyatlandırma</b-nav-item>
+            <b-nav-item href="#pricing" is="a" class="anchor-link nav-link nav-item">Fiyatlandırma</b-nav-item>
+            <language-switcher />
             <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4">
               <b-link to="/login" class="btn-login anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
                 <small>GİRİŞ</small>
@@ -102,8 +103,9 @@ import DiscoverApp from "../components/Landing/DiscoverApp.vue";
 import HowItWorks from "../components/Landing/HowItWorks.vue";
 import Pricing from "../components/Landing/Pricing.vue";
 import AppFooter from "../components/Landing/Footer.vue";
+import LanguageSwitcher from "../components/Landing/LanguageSwitcher.vue";
 export default {
-  components: { Feature, DiscoverApp, HowItWorks, Pricing, AppFooter },
+  components: { Feature, DiscoverApp, HowItWorks, Pricing, AppFooter, LanguageSwitcher },
 
   data() {
     return {
@@ -136,6 +138,7 @@ export default {
       var container = navbar.getElementsByTagName("div")[0];
       var navbarCollapse = document.getElementById("landing-navbar-collapse");
       var loginBtn = document.getElementsByClassName("btn-login")[0];
+      var languageSwitcher = document.querySelector("#languageSwitcher button");
       var navbarScrollThreshold = 20;
       var navbarBreakPoint = 992;
       var navbarCustomClasses = {
@@ -160,6 +163,8 @@ export default {
         container.classList.add("container");
         loginBtn.classList.add("btn-landing-primary");
         loginBtn.classList.remove("btn-outline-light");
+        languageSwitcher.classList.add("btn-landing-primary");
+        languageSwitcher.classList.remove("btn-outline-light");
       } else if (scrollTop <= navbarScrollThreshold && navbar.classList.contains("landing-navbar-alt")) {
         navbar.classList.remove("landing-navbar-alt");
         navbar.classList.add(navbarCustomClasses.default.classes);
@@ -168,6 +173,8 @@ export default {
         container.classList.add("container-fluid");
         loginBtn.classList.add("btn-outline-light");
         loginBtn.classList.remove("btn-landing-primary");
+        languageSwitcher.classList.add("btn-outline-light");
+        languageSwitcher.classList.remove("btn-landing-primary");
 
         if (window.outerWidth >= navbarBreakPoint || navbarCollapse.classList.contains("show")) {
           navbar.classList.add(navbarCustomClasses.default.variant);
