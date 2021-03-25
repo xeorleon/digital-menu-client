@@ -1,5 +1,5 @@
 <template>
-  <div class="landing-1 light-style">
+  <div class="landing light-style">
     <b-navbar class="landing-navbar pt-lg-4" toggleable="lg" type="dark" fixed="top">
       <b-container fluid class="px-3">
         <b-navbar-brand to="/" class="text-big font-weight-bolder line-height-1 text-expanded py-3">LANDING</b-navbar-brand>
@@ -10,7 +10,7 @@
             <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Ekran Görüntüleri</b-nav-item>
             <b-nav-item href="#" is="a" class="anchor-link nav-link nav-item">Fiyatlandırma</b-nav-item>
             <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4">
-              <b-link to="/login" class="anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
+              <b-link to="/login" class="btn-login anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
                 <small>GİRİŞ</small>
               </b-link>
             </b-nav-item>
@@ -22,7 +22,7 @@
       <b-container fluid class="pr-lg-5 pl-xl-5">
         <b-row no-gutters class="justify-content-center w-100 pt-3">
           <b-col lg="7" xl="6" class="text-lg-left text-center my-5 mr-xl-5">
-            <h1 class="display-3 font-secondary text-white font-weight-semibold mb-4">Lorem ipsum dolor sit amet</h1>
+            <h1 class="display-4 font-secondary text-white font-weight-semibold mb-4">Lorem ipsum dolor sit amet</h1>
             <p class="lead text-light pb-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eum, tempore quisquam, saepe nam aperiam dolorem, ducimus veritatis deserunt aspernatur doloribus labore! Nulla deserunt velit magni vitae ab expedita quaerat?
             </p>
@@ -50,6 +50,7 @@ export default {
       var navbar = document.getElementsByClassName("landing-navbar")[0];
       var container = navbar.getElementsByTagName("div")[0];
       var navbarCollapse = document.getElementById("landing-navbar-collapse");
+      var loginBtn = document.getElementsByClassName("btn-login")[0];
       var navbarScrollThreshold = 20;
       var navbarBreakPoint = 992;
       var navbarCustomClasses = {
@@ -72,12 +73,17 @@ export default {
         navbar.classList.add(navbarCustomClasses.alt.classes);
         container.classList.remove("container-fluid");
         container.classList.add("container");
+        loginBtn.classList.add("btn-landing-primary");
+        loginBtn.classList.remove("btn-outline-light");
+        console.log(loginBtn);
       } else if (scrollTop <= navbarScrollThreshold && navbar.classList.contains("landing-navbar-alt")) {
         navbar.classList.remove("landing-navbar-alt");
         navbar.classList.add(navbarCustomClasses.default.classes);
         navbar.classList.remove(navbarCustomClasses.alt.classes);
         container.classList.remove("container");
         container.classList.add("container-fluid");
+        loginBtn.classList.add("btn-outline-light");
+        loginBtn.classList.remove("btn-landing-primary");
 
         if (window.outerWidth >= navbarBreakPoint || navbarCollapse.classList.contains("show")) {
           navbar.classList.add(navbarCustomClasses.default.variant);
@@ -95,7 +101,10 @@ export default {
 }
 
 .landing-navbar .nav-link {
-  font-size: 0.894rem;
+  font-size: var(--navbar-link);
+}
+
+.landing-navbar-alt .nav-link {
   color: var(--color-black-opacity);
 }
 
@@ -108,15 +117,15 @@ export default {
   padding-bottom: 5rem;
 }
 
-.landing-1 .font-secondary {
+.landing .font-secondary {
   font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-.landing-1 .landing-navbar-alt {
+.landing .landing-navbar-alt {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(24, 28, 33, 0.04) !important;
 }
 
-.landing-1 .landing-btn {
+.landing .landing-btn {
   text-transform: uppercase;
   letter-spacing: 0.06991em;
   font-weight: 600;
