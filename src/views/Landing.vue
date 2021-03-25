@@ -92,6 +92,7 @@
         <pricing :subscriptionTypes="subscriptionType" />
       </b-container>
     </div>
+    <app-footer />
   </div>
 </template>
 
@@ -100,8 +101,9 @@ import Feature from "../components/Landing/Feature.vue";
 import DiscoverApp from "../components/Landing/DiscoverApp.vue";
 import HowItWorks from "../components/Landing/HowItWorks.vue";
 import Pricing from "../components/Landing/Pricing.vue";
+import AppFooter from "../components/Landing/Footer.vue";
 export default {
-  components: { Feature, DiscoverApp, HowItWorks, Pricing },
+  components: { Feature, DiscoverApp, HowItWorks, Pricing, AppFooter },
 
   data() {
     return {
