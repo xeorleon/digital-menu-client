@@ -24,7 +24,7 @@
             <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">Login to Your Account</h4>
             <form class="my-5" @submit="login">
               <b-form-group label="Email">
-                <b-input v-model="credentials.email" />
+                <b-input v-model="credentials.emailAddress" />
               </b-form-group>
               <b-form-group>
                 <div slot="label" class="d-flex justify-content-between align-items-end">
@@ -48,10 +48,11 @@
 </template>
 
 <script>
+import { emailRegex } from "@/helper/constants";
 export default {
   data: () => ({
     credentials: {
-      email: "",
+      emailAddress: "",
       password: "",
       isPersistent: false,
     },
@@ -69,7 +70,7 @@ export default {
             group: "notify",
             title: "Hata",
             text: item,
-            duration: 10000,
+            duration: 5000,
             type: "error",
           });
         });
@@ -78,7 +79,8 @@ export default {
     },
 
     validateForm() {
-      if (this.credentials.email === "" || this.credentials.email === undefined || this.credentials.email === null) this.validationErrors.push("email giriniz.");
+      if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) this.validationErrors.push("email giriniz.");
+      else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push("E-posta doğru formatta olmalidir");
       if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push("parola giriniz.");
 
       if (this.validationErrors.length > 0) return false;

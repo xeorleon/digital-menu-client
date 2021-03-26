@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import { emailRegex } from "@/helper/constants";
 export default {
   data: () => ({
     credentials: {
@@ -84,7 +85,7 @@ export default {
             group: "notify",
             title: "Hata",
             text: item,
-            duration: 10000,
+            duration: 5000,
             type: "error",
           });
         });
@@ -97,6 +98,7 @@ export default {
       if (this.credentials.firstName === "" || this.credentials.firstName === undefined || this.credentials.firstName === null) this.validationErrors.push("İsim zorunludur.");
       if (this.credentials.lastName === "" || this.credentials.lastName === undefined || this.credentials.lastName === null) this.validationErrors.push("Soyisim zorunludur.");
       if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) this.validationErrors.push("E-posta zorunludur.");
+      else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push("E-posta doğru formatta olmalidir");
       if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push("Parola zorunludur.");
       if (this.credentials.password != this.passwordConfirm) this.validationErrors.push("parolalar uyuşmuyor");
       if (this.credentials.username.length > 16) this.validationErrors.push("kullanici adi 16 karakterden uzun olamaz.");
