@@ -19,7 +19,7 @@
           <b-link to="/policy" class="footer-link d-block small pb-2">Privacy Policy</b-link>
           <b-link to="/contact" class="footer-link d-block small pb-2">Contact</b-link>
         </div>
-        <div class="col-6 col-sm pb-4">
+        <div class="col-6 offset-3 offset-sm-0 col-sm pb-4">
           <div class="footer-text font-secondary text-tiny font-weight-bold mb-3">CONNECT</div>
           <a href="#" class="footer-link d-block small pb-2"> &nbsp;Twitter</a>
           <a href="#" class="footer-link d-block small pb-2"> &nbsp;Facebook</a>

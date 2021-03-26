@@ -1,24 +1,6 @@
 <template>
   <div class="landing light-style">
-    <b-navbar class="landing-navbar pt-lg-4" toggleable="lg" type="dark" fixed="top">
-      <b-container fluid class="px-3">
-        <b-navbar-brand to="/" class="text-big font-weight-bolder line-height-1 text-expanded py-3">LANDING</b-navbar-brand>
-        <b-navbar-toggle target="landing-navbar-collapse"></b-navbar-toggle>
-        <b-collapse id="landing-navbar-collapse" is-nav>
-          <b-navbar-nav class="align-items-lg-center ml-auto">
-            <b-nav-item href="#features" is="a" class="anchor-link nav-link nav-item">Özellikler</b-nav-item>
-            <b-nav-item href="#screenshots" is="a" class="anchor-link nav-link nav-item">Ekran Görüntüleri</b-nav-item>
-            <b-nav-item href="#pricing" is="a" class="anchor-link nav-link nav-item">Fiyatlandırma</b-nav-item>
-            <language-switcher />
-            <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4">
-              <b-link to="/login" class="btn-login anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
-                <small>GİRİŞ</small>
-              </b-link>
-            </b-nav-item>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-container>
-    </b-navbar>
+    <app-navbar />
     <b-jumbotron class="ui-hero ui-mh-100vh ui-bg-cover">
       <b-container fluid class="pr-lg-5 pl-xl-5">
         <b-row no-gutters class="justify-content-center w-100 pt-3">
@@ -98,14 +80,14 @@
 </template>
 
 <script>
-import Feature from "../components/Landing/Feature.vue";
-import DiscoverApp from "../components/Landing/DiscoverApp.vue";
-import HowItWorks from "../components/Landing/HowItWorks.vue";
-import Pricing from "../components/Landing/Pricing.vue";
-import AppFooter from "../components/Landing/Footer.vue";
-import LanguageSwitcher from "../components/Landing/LanguageSwitcher.vue";
+import Feature from "@/components/Landing/Feature.vue";
+import DiscoverApp from "@/components/Landing/DiscoverApp.vue";
+import HowItWorks from "@/components/Landing/HowItWorks.vue";
+import Pricing from "@/components/Landing/Pricing.vue";
+import AppFooter from "@/components/Landing/Footer.vue";
+import AppNavbar from "@/components/Landing/Navbar.vue";
 export default {
-  components: { Feature, DiscoverApp, HowItWorks, Pricing, AppFooter, LanguageSwitcher },
+  components: { Feature, DiscoverApp, HowItWorks, Pricing, AppFooter, AppNavbar },
 
   data() {
     return {
@@ -125,84 +107,10 @@ export default {
       ],
     };
   },
-
-  created() {
-    document.addEventListener("scroll", this.handleScroll);
-  },
-  destroyed() {
-    document.removeEventListener("scroll", this.handleScroll);
-  },
-  methods: {
-    handleScroll() {
-      var navbar = document.getElementsByClassName("landing-navbar")[0];
-      var container = navbar.getElementsByTagName("div")[0];
-      var navbarCollapse = document.getElementById("landing-navbar-collapse");
-      var loginBtn = document.getElementsByClassName("btn-login")[0];
-      var languageSwitcher = document.querySelector("#languageSwitcher button");
-      var navbarScrollThreshold = 20;
-      var navbarBreakPoint = 992;
-      var navbarCustomClasses = {
-        default: {
-          variant: "navbar-dark",
-          classes: "pt-lg-4",
-        },
-        alt: {
-          variant: "bg-white",
-          classes: "py-1",
-        },
-      };
-
-      var scrollTop = window.scrollY;
-      if (scrollTop > navbarScrollThreshold && !navbar.classList.contains("landing-navbar-alt")) {
-        navbar.classList.add("landing-navbar-alt");
-        navbar.classList.remove(navbarCustomClasses.default.variant);
-        navbar.classList.remove(navbarCustomClasses.default.classes);
-        navbar.classList.add(navbarCustomClasses.alt.variant);
-        navbar.classList.add(navbarCustomClasses.alt.classes);
-        container.classList.remove("container-fluid");
-        container.classList.add("container");
-        loginBtn.classList.add("btn-landing-primary");
-        loginBtn.classList.remove("btn-outline-light");
-        languageSwitcher.classList.add("btn-landing-primary");
-        languageSwitcher.classList.remove("btn-outline-light");
-      } else if (scrollTop <= navbarScrollThreshold && navbar.classList.contains("landing-navbar-alt")) {
-        navbar.classList.remove("landing-navbar-alt");
-        navbar.classList.add(navbarCustomClasses.default.classes);
-        navbar.classList.remove(navbarCustomClasses.alt.classes);
-        container.classList.remove("container");
-        container.classList.add("container-fluid");
-        loginBtn.classList.add("btn-outline-light");
-        loginBtn.classList.remove("btn-landing-primary");
-        languageSwitcher.classList.add("btn-outline-light");
-        languageSwitcher.classList.remove("btn-landing-primary");
-
-        if (window.outerWidth >= navbarBreakPoint || navbarCollapse.classList.contains("show")) {
-          navbar.classList.add(navbarCustomClasses.default.variant);
-          navbar.classList.remove(navbarCustomClasses.alt.variant);
-        }
-      }
-    },
-  },
 };
 </script>
 
 <style>
-.landing-navbar {
-  transition: all 0.2s;
-}
-
-.landing-navbar .nav-link {
-  font-size: var(--navbar-link);
-}
-
-.landing-navbar-alt .nav-link {
-  color: var(--color-black-opacity);
-}
-
-.landing-navbar-alt .navbar-brand {
-  color: var(--color-black-brand);
-}
-
 .landing-block {
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -210,10 +118,6 @@ export default {
 
 .landing .font-secondary {
   font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
-
-.landing .landing-navbar-alt {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(24, 28, 33, 0.04) !important;
 }
 
 .landing .landing-btn {
