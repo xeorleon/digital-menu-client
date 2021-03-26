@@ -61,6 +61,7 @@
 <script>
 import { emailRegex } from "@/helper/constants";
 export default {
+  title: "Register",
   data: () => ({
     credentials: {
       username: "",

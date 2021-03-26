@@ -27,6 +27,7 @@
 <script>
 import { emailRegex } from "@/helper/constants";
 export default {
+  title: "Forgot Password",
   data: () => ({
     credentials: {
       emailAddress: "",

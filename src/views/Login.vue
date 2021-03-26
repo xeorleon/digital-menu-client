@@ -50,6 +50,7 @@
 <script>
 import { emailRegex } from "@/helper/constants";
 export default {
+  title: "Login",
   data: () => ({
     credentials: {
       emailAddress: "",

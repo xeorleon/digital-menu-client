@@ -88,6 +88,7 @@ import AppFooter from "@/components/Landing/Footer.vue";
 import AppNavbar from "@/components/Landing/Navbar.vue";
 export default {
   components: { Feature, DiscoverApp, HowItWorks, Pricing, AppFooter, AppNavbar },
+  title: "Home",
 
   data() {
     return {
