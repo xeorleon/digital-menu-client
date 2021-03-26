@@ -10,3 +10,9 @@
 <script>
 export default {};
 </script>
+
+<style>
+.dropdown-menu .dropdown-item:active {
+  background-color: var(--color-landing-secondary) !important;
+}
+</style>
