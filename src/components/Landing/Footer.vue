@@ -40,6 +40,6 @@ export default {};
 }
 
 .footer-link {
-  color: var(--color-footer-link);
+  color: var(--color-footer-text);
 }
 </style>

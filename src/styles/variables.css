@@ -1,11 +1,12 @@
 :root {
   /* Colors */
   --color-landing-primary: #3ab5a1;
+  --color-landing-secondary: #1A5F9D;
   --color-white: #ffffff;
   --color-black-opacity: rgba(0, 0, 0, 0.5);
   --color-black-brand: rgba(0, 0, 0, 0.9);
   --color-footer-text: #4e5155;
-  --color-footer-link: "#4e5155";
+  --color-muted: #a3a4a6;
 
   /* Sizes */
   --navbar-link: 0.894rem;
