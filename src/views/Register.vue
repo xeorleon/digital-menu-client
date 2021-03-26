@@ -93,8 +93,6 @@ export default {
     },
 
     validateForm() {
-      console.log(this.credentials.password);
-      console.log(this.passwordConfirm);
       if (this.credentials.username === "" || this.credentials.username === undefined || this.credentials.username === null) this.validationErrors.push("kullanici adi zorunludur.");
       if (this.credentials.firstName === "" || this.credentials.firstName === undefined || this.credentials.firstName === null) this.validationErrors.push("İsim zorunludur.");
       if (this.credentials.lastName === "" || this.credentials.lastName === undefined || this.credentials.lastName === null) this.validationErrors.push("Soyisim zorunludur.");
