@@ -1,5 +1,8 @@
 @import "variables.css";
 @import "../../node_modules/@fontsource/raleway/500.css";
+@import "../../node_modules/@fontsource/roboto/500.css";
+@import "../../node_modules/@fontsource/roboto/700.css";
+@import "../../node_modules/@fontsource/roboto/400.css";
 
 /* Reset CSS Start */
 *,
@@ -50,7 +53,7 @@ body {
 }
 
 .custom-text-muted {
-  color: #a3a4a6 !important;
+  color: var(--color-muted) !important;
 }
 
 .border-landing-primary {
