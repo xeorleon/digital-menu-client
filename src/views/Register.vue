@@ -47,10 +47,10 @@
               <b-btn type="submit" variant="landing-primary" :block="true" class="mt-4">Sign Up</b-btn>
               <div class="custom-text-muted small mt-4">
                 By clicking "Sign Up", you agree to our
-                <a href="javascript:void(0)">terms of service and privacy policy</a>. We’ll occasionally send you account related emails.
+                <b-link to="/privacy-policy" class="text-landing-primary">terms of service and privacy policy</b-link>. We’ll occasionally send you account related emails.
               </div>
             </form>
-            <div class="text-center text-muted">Already have an account? <b-link to="/login">Sign In</b-link></div>
+            <div class="text-center text-muted">Already have an account? <b-link to="/login" class="text-landing-primary">Sign In</b-link></div>
           </div>
         </b-col>
       </b-col>
@@ -113,63 +113,7 @@ export default {
 </script>
 
 <style>
-.authentication-wrapper {
-  display: flex;
-  flex-basis: 100%;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.authentication-wrapper .authentication-inner {
-  width: 100%;
-}
-
-.authentication-wrapper.authentication-3 {
-  align-items: stretch;
-  justify-content: stretch;
-}
-
-.authentication-wrapper.authentication-3 .authentication-inner {
-  display: flex;
-  align-items: stretch;
-  flex-wrap: nowrap;
-  justify-content: stretch;
-}
-
 .register-bg {
   background-image: url("../assets/register-img.jpg");
-}
-
-.ui-bg-cover {
-  background-color: rgba(0, 0, 0, 0);
-  background-position: center center;
-  background-size: cover;
-}
-
-.ui-bg-overlay-container {
-  position: relative;
-}
-.ui-bg-overlay-container > * {
-  position: relative;
-}
-
-.ui-bg-overlay-container .ui-bg-overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
-}
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .authentication-wrapper::after {
-    content: "";
-    display: block;
-    flex: 0 0 0%;
-    min-height: inherit;
-    width: 0;
-    font-size: 0;
-  }
 }
 </style>
