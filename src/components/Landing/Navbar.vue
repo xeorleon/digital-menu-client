@@ -92,7 +92,8 @@ export default {
       const navbarScrollThreshold = 20;
       const scrollTop = window.scrollY;
 
-      if (!navbarCollapse.classList.contains("show")) {
+      // kapalı => açık
+      if (!navbarCollapse.classList.contains("show") && window.outerWidth < 992) {
         navbar.classList.add("bg-white");
         navbar.classList.add("navbar-light");
         navbar.classList.remove("navbar-dark");
@@ -100,7 +101,9 @@ export default {
         loginBtn.classList.remove("btn-outline-light");
         languageSwitcher.classList.add("btn-landing-primary");
         languageSwitcher.classList.remove("btn-outline-light");
-      } else if (navbarCollapse.classList.contains("show") && scrollTop <= navbarScrollThreshold) {
+      }
+      // açık => kapalı
+      else if (navbarCollapse.classList.contains("show") && scrollTop <= navbarScrollThreshold) {
         navbar.classList.remove("bg-white");
         navbar.classList.remove("navbar-light");
         navbar.classList.add("navbar-dark");
@@ -113,10 +116,6 @@ export default {
 <style>
 .landing-navbar {
   transition: all 0.2s;
-}
-
-.landing-navbar .navbar-brand {
-  color: var(--color-white);
 }
 
 .landing-navbar .nav-link {
