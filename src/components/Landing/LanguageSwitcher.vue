@@ -2,7 +2,7 @@
   <div>
     <b-dropdown
       id="languageSwitcher"
-      :text="selectLang"
+      :text="selectedLang"
       class="m-md-2"
       variant="outline-light"
     >
@@ -22,21 +22,21 @@ export default {
   data() {
     return {
       langs: ["EN", "TR"],
-      selectLang: i18n.locale.toUpperCase(),
+      selectedLang: i18n.locale.toUpperCase(),
     };
   },
   methods: {
     setLocale(locale) {
       this.$i18n.locale = locale;
-      this.selectLang = locale.toUpperCase();
-      this.$cookie.set("lang", locale, { expires: 14 });
+      this.selectedLang = locale.toUpperCase();
+      this.$cookie.set("lang", locale, { expires: 365 });
     },
   },
   mounted() {
     if (this.$cookie.get("lang")) {
       let lang = this.$cookie.get("lang");
       i18n.locale = lang;
-      this.selectLang = lang.toUpperCase();
+      this.selectedLang = lang.toUpperCase();
     }
   },
 };
