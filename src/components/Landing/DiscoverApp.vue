@@ -1,20 +1,38 @@
 <template>
   <div>
     <b-container class="px-3">
-      <div class="text-center text-small font-weight-bold mb-3 custom-text-muted">SCREENSHOTS</div>
-      <h1 class="display-5 font-secondary text-center font-weight-semibold">Discover The App</h1>
+      <div
+        class="text-center text-small font-weight-bold mb-3 custom-text-muted"
+      >
+        SCREENSHOTS
+      </div>
+      <h1 class="display-5 font-secondary text-center font-weight-semibold">
+        Discover The App
+      </h1>
     </b-container>
     <hr class="landing-separator border-landing-primary mx-auto mt-5 mb-4" />
     <div class="app-preview-slider-wrapper">
       <swiper class="swiper app-preview-slider" :options="swiperOptions">
         <swiper-slide>
-          <img src="@/assets/landing-img.png" alt="" class="img-fluid cursor-pointer" />
+          <img
+            src="@/assets/landing-img.png"
+            alt=""
+            class="img-fluid cursor-pointer"
+          />
         </swiper-slide>
         <swiper-slide>
-          <img src="@/assets/landing-img.png" alt="" class="img-fluid cursor-pointer" />
+          <img
+            src="@/assets/landing-img.png"
+            alt=""
+            class="img-fluid cursor-pointer"
+          />
         </swiper-slide>
         <swiper-slide>
-          <img src="@/assets/landing-img.png" alt="" class="img-fluid cursor-pointer" />
+          <img
+            src="@/assets/landing-img.png"
+            alt=""
+            class="img-fluid cursor-pointer"
+          />
         </swiper-slide>
         <div class="swiper-pagination app-pagination" slot="pagination"></div>
       </swiper>

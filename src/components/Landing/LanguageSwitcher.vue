@@ -1,6 +1,11 @@
 <template>
   <div>
-    <b-dropdown id="languageSwitcher" text="TR" class="m-md-2" variant="outline-light">
+    <b-dropdown
+      id="languageSwitcher"
+      text="TR"
+      class="m-md-2"
+      variant="outline-light"
+    >
       <b-dropdown-item>EN</b-dropdown-item>
       <b-dropdown-item>TR</b-dropdown-item>
     </b-dropdown>
