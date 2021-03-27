@@ -10,9 +10,8 @@
 
 <script>
 export default {
-  props: ["title","description","iconClass"]
+  props: ["title", "description", "iconClass"],
 };
 </script>
 
-<style>
-</style>
+<style></style>

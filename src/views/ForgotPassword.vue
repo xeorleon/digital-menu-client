@@ -4,20 +4,35 @@
       <form class="card" @submit="forgotPassword">
         <div class="p-4 p-sm-5">
           <!-- Logo -->
-          <div class="d-flex justify-content-center align-items-center pb-2 mb-4">
+          <div
+            class="d-flex justify-content-center align-items-center pb-2 mb-4"
+          >
             <div class="ui-w-60">
-              <div class="w-100 position-relative" style="padding-bottom: 54%"></div>
+              <div
+                class="w-100 position-relative"
+                style="padding-bottom: 54%"
+              ></div>
             </div>
           </div>
           <!-- / Logo -->
 
-          <h5 class="text-center text-muted font-weight-normal mb-4">Reset Your Password</h5>
+          <h5 class="text-center text-muted font-weight-normal mb-4">
+            Reset Your Password
+          </h5>
           <hr class="mt-0 mb-4" />
-          <p>Enter your email address and we will send you a link to reset your password.</p>
+          <p>
+            Enter your email address and we will send you a link to reset your
+            password.
+          </p>
           <b-form-group>
-            <b-input v-model="credentials.emailAddress" placeholder="Enter your email address" />
+            <b-input
+              v-model="credentials.emailAddress"
+              placeholder="Enter your email address"
+            />
           </b-form-group>
-          <b-btn type="submit" variant="landing-primary" :block="true">Send password reset email</b-btn>
+          <b-btn type="submit" variant="landing-primary" :block="true"
+            >Send password reset email</b-btn
+          >
         </div>
       </form>
     </div>
@@ -43,7 +58,11 @@ export default {
     },
 
     validateForm() {
-      if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) {
+      if (
+        this.credentials.emailAddress === "" ||
+        this.credentials.emailAddress === undefined ||
+        this.credentials.emailAddress === null
+      ) {
         this.$notify({
           group: "notify",
           text: "lutfen email giriniz.",

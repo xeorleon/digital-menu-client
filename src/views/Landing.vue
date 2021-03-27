@@ -5,14 +5,29 @@
       <b-container fluid class="pr-lg-5 pl-xl-5">
         <b-row no-gutters class="justify-content-center w-100 pt-3">
           <b-col lg="7" xl="6" class="text-lg-left text-center my-5 mr-xl-5">
-            <h1 class="display-4 font-secondary text-white font-weight-semibold mb-4">Lorem ipsum dolor sit amet</h1>
+            <h1
+              class="display-4 font-secondary text-white font-weight-semibold mb-4"
+            >
+              Lorem ipsum dolor sit amet
+            </h1>
             <p class="lead text-light pb-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eum, tempore quisquam, saepe nam aperiam dolorem, ducimus veritatis deserunt aspernatur doloribus labore! Nulla deserunt velit magni vitae ab expedita quaerat?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consequatur eum, tempore quisquam, saepe nam aperiam dolorem,
+              ducimus veritatis deserunt aspernatur doloribus labore! Nulla
+              deserunt velit magni vitae ab expedita quaerat?
             </p>
-            <b-link to="/register" class="btn-outline-light btn btn-lg rounded-pill mt-2">ÜCRETSİZ DENE</b-link>
+            <b-link
+              to="/register"
+              class="btn-outline-light btn btn-lg rounded-pill mt-2"
+              >ÜCRETSİZ DENE</b-link
+            >
           </b-col>
           <b-col lg="5" class="text-center pl-lg-5 pl-xl-2 my-5">
-            <img class="w-100" src="../assets/landing-img.png" style="max-width: 550px" />
+            <img
+              class="w-100"
+              src="../assets/landing-img.png"
+              style="max-width: 550px"
+            />
           </b-col>
         </b-row>
       </b-container>
@@ -24,10 +39,15 @@
             <div class="display-4 text-landing-primary mb-4">
               <i class="lnr lnr-rocket"></i>
             </div>
-            <h1 class="display-5 font-secondary font-weight-semibold mb-5">Ultimate Tool for Professionals</h1>
+            <h1 class="display-5 font-secondary font-weight-semibold mb-5">
+              Ultimate Tool for Professionals
+            </h1>
             <div class="custom-text-muted">
-              Lorem ipsum dolor sit amet, ad eam consul vituperata. Cum assum inimicus an, his ne liber aeterno debitis. Te his iudico tollit efficiendi. Eu harum volumus pri, oporteat probatus disputationi id his. Mei in vidit mollis mediocrem, cum
-              ad suas democritum, ea eos e ligendi nominati volutpat.
+              Lorem ipsum dolor sit amet, ad eam consul vituperata. Cum assum
+              inimicus an, his ne liber aeterno debitis. Te his iudico tollit
+              efficiendi. Eu harum volumus pri, oporteat probatus disputationi
+              id his. Mei in vidit mollis mediocrem, cum ad suas democritum, ea
+              eos e ligendi nominati volutpat.
             </div>
           </b-col>
         </b-container>
@@ -37,20 +57,53 @@
     <div id="features" class="landing-block">
       <b-container class="px-3">
         <b-col md="10" lg="8" xl="7" class="text-center p-0 mx-auto">
-          <div class="text-center custom-text-muted text-small font-weight-bold mb-3">FEATURES</div>
-          <h1 class="display-5 font-secondary font-weight-semibold mb-4">Everything That You Need In One App</h1>
+          <div
+            class="text-center custom-text-muted text-small font-weight-bold mb-3"
+          >
+            FEATURES
+          </div>
+          <h1 class="display-5 font-secondary font-weight-semibold mb-4">
+            Everything That You Need In One App
+          </h1>
           <div class="custom-text-muted mb-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur at nisi sapiente voluptatibus facilis eaque quia deserunt reiciendis in? Culpa excepturi ab dicta voluptates reiciendis quis enim numquam, doloribus distinctio.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Consequuntur at nisi sapiente voluptatibus facilis eaque quia
+            deserunt reiciendis in? Culpa excepturi ab dicta voluptates
+            reiciendis quis enim numquam, doloribus distinctio.
           </div>
         </b-col>
         <hr class="landing-separator border-light mx-auto" />
         <b-row class="text-center">
-          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
-          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
-          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
-          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
-          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
-          <feature description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem" title="Everything That You" iconClass="lnr lnr-star" />
+          <feature
+            description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+            title="Everything That You"
+            iconClass="lnr lnr-star"
+          />
+          <feature
+            description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+            title="Everything That You"
+            iconClass="lnr lnr-star"
+          />
+          <feature
+            description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+            title="Everything That You"
+            iconClass="lnr lnr-star"
+          />
+          <feature
+            description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+            title="Everything That You"
+            iconClass="lnr lnr-star"
+          />
+          <feature
+            description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+            title="Everything That You"
+            iconClass="lnr lnr-star"
+          />
+          <feature
+            description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+            title="Everything That You"
+            iconClass="lnr lnr-star"
+          />
         </b-row>
       </b-container>
     </div>
@@ -58,19 +111,43 @@
       <discover-app />
     </div>
     <b-container class="landing-block px-3">
-      <div class="text-center custom-text-muted text-small font-weight-bold mb-3">INSIGHTS</div>
-      <h1 class="display-5 font-secondary text-center font-weight-semibold">How It Works</h1>
+      <div
+        class="text-center custom-text-muted text-small font-weight-bold mb-3"
+      >
+        INSIGHTS
+      </div>
+      <h1 class="display-5 font-secondary text-center font-weight-semibold">
+        How It Works
+      </h1>
       <hr class="landing-separator border-success mx-auto mt-5 mb-4" />
       <b-row class="text-center">
-        <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
-        <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
-        <how-it-works iconClass="lnr lnr-star" title="Lorem ipsum dolor sit amet" description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"></how-it-works>
+        <how-it-works
+          iconClass="lnr lnr-star"
+          title="Lorem ipsum dolor sit amet"
+          description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+        ></how-it-works>
+        <how-it-works
+          iconClass="lnr lnr-star"
+          title="Lorem ipsum dolor sit amet"
+          description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+        ></how-it-works>
+        <how-it-works
+          iconClass="lnr lnr-star"
+          title="Lorem ipsum dolor sit amet"
+          description="Lorem ipsum dolor sit amet, ius virtute suscipit te. Ius prima euismod consequat eu, cu quo alii scriptorem"
+        ></how-it-works>
       </b-row>
     </b-container>
     <div class="bg-white">
       <b-container id="pricing" class="landing-block px-3">
-        <div class="text-center custom-text-muted text-small font-weight-bold mb-3">PRICING</div>
-        <h1 class="display-5 font-secondary text-center font-weight-semibold">Pay Only for What You Need</h1>
+        <div
+          class="text-center custom-text-muted text-small font-weight-bold mb-3"
+        >
+          PRICING
+        </div>
+        <h1 class="display-5 font-secondary text-center font-weight-semibold">
+          Pay Only for What You Need
+        </h1>
         <hr class="landing-separator border-primary my-5 mx-auto" />
         <pricing :subscriptionTypes="subscriptionType" />
       </b-container>
@@ -87,7 +164,14 @@ import Pricing from "@/components/Landing/Pricing.vue";
 import AppFooter from "@/components/Landing/Footer.vue";
 import AppNavbar from "@/components/Landing/Navbar.vue";
 export default {
-  components: { Feature, DiscoverApp, HowItWorks, Pricing, AppFooter, AppNavbar },
+  components: {
+    Feature,
+    DiscoverApp,
+    HowItWorks,
+    Pricing,
+    AppFooter,
+    AppNavbar,
+  },
   title: "Home",
 
   data() {
@@ -118,7 +202,9 @@ export default {
 }
 
 .landing .font-secondary {
-  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 
 .landing .landing-btn {
@@ -126,7 +212,9 @@ export default {
   letter-spacing: 0.06991em;
   font-weight: 600;
   font-size: 85%;
-  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 
 hr.landing-separator {
@@ -139,7 +227,16 @@ hr.landing-separator {
 .landing-separator-stripes {
   width: 100%;
   height: 4px;
-  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.06) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.06) 50%, rgba(0, 0, 0, 0.06) 75%, transparent 75%, #fff);
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.06) 50%,
+    rgba(0, 0, 0, 0.06) 75%,
+    transparent 75%,
+    #fff
+  );
   background-size: 4px 4px;
 }
 
@@ -199,7 +296,8 @@ hr.landing-separator {
     display: none;
   }
 }
-@media all and (min-width: 576px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@media all and (min-width: 576px) and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
   .light-style .ui-mh-100vh.jumbotron::after {
     min-height: calc(100vh - 12rem);
   }

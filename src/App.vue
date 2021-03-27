@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <page-loader />
-    <notifications group="notify" position="top left"/>
+    <notifications group="notify" position="top left" />
     <router-view />
   </div>
 </template>
@@ -13,5 +13,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
