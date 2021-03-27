@@ -13,17 +13,22 @@ const routes = [
   {
     path: "/register",
     name: "Register",
-    component: () => import(/* webpackChunkName: "register" */ "../views/Register.vue"),
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/Register.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/Login.vue"),
   },
   {
     path: "/forgot-password",
     name: "ForgotPassword",
-    component: () => import(/* webpackChunkName: "forgot-password" */ "../views/ForgotPassword.vue"),
+    component: () =>
+      import(
+        /* webpackChunkName: "forgot-password" */ "../views/ForgotPassword.vue"
+      ),
   },
 ];
 
