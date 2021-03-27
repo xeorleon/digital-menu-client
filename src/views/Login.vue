@@ -69,7 +69,6 @@ export default {
         this.validationErrors.map((item) => {
           this.$notify({
             group: "notify",
-            title: "Hata",
             text: item,
             duration: 5000,
             type: "error",

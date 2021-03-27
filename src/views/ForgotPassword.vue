@@ -46,18 +46,16 @@ export default {
       if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) {
         this.$notify({
           group: "notify",
-          title: "Hata",
           text: "lutfen email giriniz.",
-          duration: 10000,
+          duration: 5000,
           type: "error",
         });
         return false;
       } else if (!emailRegex.test(this.credentials.emailAddress)) {
         this.$notify({
           group: "notify",
-          title: "Hata",
           text: "epostayı dogru formattan giriniz",
-          duration: 10000,
+          duration: 5000,
           type: "error",
         });
         return false;
