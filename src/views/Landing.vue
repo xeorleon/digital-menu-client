@@ -8,7 +8,7 @@
             <h1
               class="display-4 font-secondary text-white font-weight-semibold mb-4"
             >
-              Lorem ipsum dolor sit amet
+              {{ $t("message") }}
             </h1>
             <p class="lead text-light pb-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
