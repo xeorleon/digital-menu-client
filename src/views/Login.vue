@@ -23,8 +23,8 @@
 
             <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">Login to Your Account</h4>
             <form class="my-5" @submit="login">
-              <b-form-group label="Email">
-                <b-input v-model="credentials.emailAddress" />
+              <b-form-group label="Username">
+                <b-input v-model="credentials.userName" />
               </b-form-group>
               <b-form-group>
                 <div slot="label" class="d-flex justify-content-between align-items-end">
@@ -51,23 +51,25 @@
 </template>
 
 <script>
-import { emailRegex } from "@/helper/constants";
+// import { emailRegex } from "@/helper/constants";
+import authService from "@/services/authService";
 export default {
   title: "Login",
   data: () => ({
     credentials: {
-      emailAddress: "",
+      userName: "",
       password: "",
       isPersistent: false,
     },
     validationErrors: [],
   }),
   methods: {
-    login(event) {
+    async login(event) {
       event.preventDefault();
 
       if (this.validateForm()) {
-        alert("giriş işlemi");
+        await authService.authenticate(this.credentials);
+        this.$router.push("/dashboard");
       } else {
         this.validationErrors.map((item) => {
           this.$notify({
@@ -82,8 +84,8 @@ export default {
     },
 
     validateForm() {
-      if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) this.validationErrors.push("email giriniz.");
-      else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push("E-posta doğru formatta olmalidir");
+      if (this.credentials.userName === "" || this.credentials.userName === undefined || this.credentials.userName === null) this.validationErrors.push("kullanici adi giriniz.");
+      // else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push("E-posta doğru formatta olmalidir");
       if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push("parola giriniz.");
 
       if (this.validationErrors.length > 0) return false;
