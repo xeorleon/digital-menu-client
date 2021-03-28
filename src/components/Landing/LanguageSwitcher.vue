@@ -1,17 +1,7 @@
 <template>
   <div>
-    <b-dropdown
-      id="languageSwitcher"
-      :text="selectedLang"
-      class="m-md-2"
-      variant="outline-light"
-    >
-      <b-dropdown-item
-        v-for="(lang, index) in langs"
-        :key="index"
-        @click="setLocale(lang)"
-        >{{ lang }}</b-dropdown-item
-      >
+    <b-dropdown id="languageSwitcher" :text="selectedLang" class="m-md-2" variant="outline-light">
+      <b-dropdown-item v-for="(lang, index) in langs" :key="index" @click="setLocale(lang)">{{ lang }}</b-dropdown-item>
     </b-dropdown>
   </div>
 </template>

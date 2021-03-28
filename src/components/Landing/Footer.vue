@@ -8,44 +8,22 @@
       <hr class="mb-4" />
       <b-row>
         <div class="col-6 col-sm pb-4">
-          <div class="footer-text font-secondary font-weight-bold mb-3">
-            ABOUT US
-          </div>
-          <b-link to="/about" class="footer-link d-block small pb-2"
-            >About</b-link
-          >
-          <b-link to="/ourstory" class="footer-link d-block small pb-2"
-            >Our Story</b-link
-          >
-          <b-link to="/crew" class="footer-link d-block small pb-2"
-            >Crew</b-link
-          >
+          <div class="footer-text font-secondary font-weight-bold mb-3">{{ $t("whoWeAre").toLocaleUpperCase() }}</div>
+          <b-link to="/about" class="footer-link d-block small pb-2">{{ $t("aboutus") }}</b-link>
+          <b-link to="/ourstory" class="footer-link d-block small pb-2">{{ $t("ourstory") }}</b-link>
+          <b-link to="/crew" class="footer-link d-block small pb-2">{{ $t("crew") }}</b-link>
         </div>
         <div class="col-6 col-sm pb-4">
-          <div class="footer-text font-secondary font-weight-bold mb-3">
-            SUPPORT
-          </div>
-          <b-link to="/faq" class="footer-link d-block small pb-2">FAQ</b-link>
-          <b-link to="/policy" class="footer-link d-block small pb-2"
-            >Privacy Policy</b-link
-          >
-          <b-link to="/contact" class="footer-link d-block small pb-2"
-            >Contact</b-link
-          >
+          <div class="footer-text font-secondary font-weight-bold mb-3">{{ $t("support").toLocaleUpperCase() }}</div>
+          <b-link to="/faq" class="footer-link d-block small pb-2">{{ $t("faq").toLocaleUpperCase() }}</b-link>
+          <b-link to="/policy" class="footer-link d-block small pb-2">{{ $t("privacyPolicy") }}</b-link>
+          <b-link to="/contact" class="footer-link d-block small pb-2">{{ $t("contact") }}</b-link>
         </div>
         <div class="col-6 offset-3 offset-sm-0 col-sm pb-4">
-          <div class="footer-text font-secondary font-weight-bold mb-3">
-            CONNECT
-          </div>
-          <a href="#" class="footer-link d-block small pb-2" target="_blank">
-            &nbsp;Twitter</a
-          >
-          <a href="#" class="footer-link d-block small pb-2" target="_blank">
-            &nbsp;Facebook</a
-          >
-          <a href="#" class="footer-link d-block small pb-2" target="_blank">
-            &nbsp;Instagram</a
-          >
+          <div class="footer-text font-secondary font-weight-bold mb-3">{{ $t("socialMedia").toLocaleUpperCase() }}</div>
+          <a href="#" class="footer-link d-block small pb-2" target="_blank"> &nbsp;Twitter</a>
+          <a href="#" class="footer-link d-block small pb-2" target="_blank"> &nbsp;Facebook</a>
+          <a href="#" class="footer-link d-block small pb-2" target="_blank"> &nbsp;Instagram</a>
         </div>
       </b-row>
     </b-container>

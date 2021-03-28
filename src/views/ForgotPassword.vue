@@ -11,13 +11,13 @@
           </div>
           <!-- / Logo -->
 
-          <h5 class="text-center text-muted font-weight-normal mb-4">Reset Your Password</h5>
+          <h5 class="text-center text-muted font-weight-normal mb-4">{{ $t("forgotPasswordFormTitle") }}</h5>
           <hr class="mt-0 mb-4" />
-          <p>Enter your email address and we will send you a link to reset your password.</p>
+          <p>{{ $t("forgotPasswordFormDescription") }}</p>
           <b-form-group>
-            <b-input v-model="credentials.emailAddress" placeholder="Enter your email address" />
+            <b-input v-model="credentials.emailAddress" :placeholder="this.$t('forgotPasswordInputPlaceholder')" />
           </b-form-group>
-          <b-btn type="submit" variant="landing-primary" :block="true">Send password reset email</b-btn>
+          <b-btn type="submit" variant="landing-primary" :block="true">{{ $t("forgotPasswordSendEmailButtonText") }}</b-btn>
         </div>
       </form>
     </div>
@@ -28,12 +28,16 @@
 import { emailRegex } from "@/helper/constants";
 import authService from "@/services/authService";
 export default {
-  title: "Forgot Password",
   data: () => ({
     credentials: {
       emailAddress: "",
     },
   }),
+
+  mounted() {
+    this.$title = this.$t("forgotPasswordTabTitle");
+  },
+
   methods: {
     async forgotPassword(event) {
       event.preventDefault();
@@ -48,7 +52,7 @@ export default {
       if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) {
         this.$notify({
           group: "notify",
-          text: "lutfen email giriniz.",
+          text: this.$t("emailRequiredError"),
           duration: 5000,
           type: "error",
         });
@@ -56,7 +60,7 @@ export default {
       } else if (!emailRegex.test(this.credentials.emailAddress)) {
         this.$notify({
           group: "notify",
-          text: "epostayı dogru formattan giriniz",
+          text: this.$t("emailWrongFormatError"),
           duration: 5000,
           type: "error",
         });
