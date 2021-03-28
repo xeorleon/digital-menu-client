@@ -7,7 +7,7 @@ module.exports = {
   parserOptions: {
     parser: "babel-eslint",
   },
-  ignorePatterns: ["*.vue"],
+  ignorePatterns: ["*.vue", "*.js"],
   rules: {
     
   },
