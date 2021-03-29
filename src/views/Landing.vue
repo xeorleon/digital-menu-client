@@ -6,6 +6,7 @@
         <b-row no-gutters class="justify-content-center w-100 pt-3">
           <b-col lg="7" xl="6" class="text-lg-left text-center my-5 mr-xl-5">
             <h1 class="display-4 font-secondary text-white font-weight-semibold mb-4">{{ $t("landingHeading") }}</h1>
+            <p><router-link to="Dashboard">Dashboard</router-link></p>
             <p class="lead text-light pb-3">{{ $t("landingText") }}</p>
             <b-link to="/register" class="btn-outline-light btn btn-lg rounded-pill mt-2">{{ $t("landingButtonText") }}</b-link>
           </b-col>
