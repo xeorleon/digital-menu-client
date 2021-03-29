@@ -71,8 +71,14 @@ export default {
       event.preventDefault();
 
       if (this.validateForm()) {
-        await authService.authenticate(this.credentials);
-        this.$router.push("/dashboard");
+        var data = await authService.authenticate(this.credentials);
+        if (data.code === 200) {
+          this.$cookie.set("refreshToken", data.data.refreshToken, { expires: this.credentials.isPersistent ? 14 : undefined });
+          this.$store.dispatch("setToken", data.data.token);
+          this.$store.dispatch("setUser", data.data.user);
+          this.$store.dispatch("setPersistent", this.credentials.isPersistent);
+          this.$router.push("/dashboard");
+        }
       } else {
         this.validationErrors.map((item) => {
           this.$notify({

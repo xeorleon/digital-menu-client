@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Landing from "../views/Landing.vue";
+import Dashboard from "../views/Dashboard.vue";
 import Layout from "../components/Layout";
 Vue.use(VueRouter);
 
@@ -13,22 +14,17 @@ const routes = [
   {
     path: "/register",
     name: "Register",
-    component: () =>
-      import(/* webpackChunkName: "register" */ "../views/Register.vue"),
+    component: () => import(/* webpackChunkName: "register" */ "@/views/Register.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: () =>
-      import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+    component: () => import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
   },
   {
     path: "/forgot-password",
     name: "ForgotPassword",
-    component: () =>
-      import(
-        /* webpackChunkName: "forgot-password" */ "../views/ForgotPassword.vue"
-      ),
+    component: () => import(/* webpackChunkName: "forgot-password" */ "@/views/ForgotPassword.vue"),
   },
   {
     path: "/dashboard",
@@ -36,12 +32,12 @@ const routes = [
     //Layoutun içinde gösteriyoruz.
     children: [
       {
-        path: "/dashboard",
-        component: () => import("@/views/Dashboard"),
+        path: "",
+        component: Dashboard,
       },
       // {
       //   path: "/dashboard/ornek",
-      //   component: () => import("@/views/Ornek")
+      //   component: () => import(/* webpackChunkName: "forgot-password" */ "@/views/Ornek")
       // }
     ],
   },

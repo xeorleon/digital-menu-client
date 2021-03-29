@@ -50,7 +50,7 @@
             </form>
             <div class="text-center text-muted">
               {{ $t("alreadyHaveAnAccount") }}
-              <b-link to="/login" class="text-landing-primary">{{ $t("signup") }}</b-link>
+              <b-link to="/login" class="text-landing-primary">{{ $t("signin") }}</b-link>
             </div>
           </div>
         </b-col>
@@ -66,15 +66,15 @@ export default {
   data() {
     return {
       credentials: {
-        username: "",
-        firstName: "",
-        lastName: "",
-        emailAddress: "",
-        phoneNumber: "",
-        password: "",
+        username: "asd",
+        firstName: "asd",
+        lastName: "asd",
+        emailAddress: "asd@gmail.com",
+        phoneNumber: "123",
+        password: "123",
       },
       validationErrors: [],
-      passwordConfirm: "",
+      passwordConfirm: "123",
     };
   },
 
@@ -86,14 +86,13 @@ export default {
     async register(event) {
       event.preventDefault();
       if (this.validateForm()) {
-       await authService.register(this.credentials);
-       //const data = await authService.register(this.credentials)
-       //if(data.status == 200){
-       //  this.$store.dispatch('setToken',data.token)
-       //  this.$store.dispatch('setUser',data.user)
-       //  this.$router.push("/dashboard");
-       //}
-        this.$router.push("/dashboard");
+        const data = await authService.register(this.credentials);
+        if (data.code == 200) {
+          this.$cookie.set("refreshToken", data.data.refreshToken);
+          this.$store.dispatch("setToken", data.data.token);
+          this.$store.dispatch("setUser", data.data.user);
+          this.$router.push("/dashboard");
+        }
       } else {
         this.validationErrors.map((item) => {
           this.$notify({
