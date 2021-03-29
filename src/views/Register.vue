@@ -86,7 +86,13 @@ export default {
     async register(event) {
       event.preventDefault();
       if (this.validateForm()) {
-        await authService.register(this.credentials);
+       await authService.register(this.credentials);
+       //const data = await authService.register(this.credentials)
+       //if(data.status == 200){
+       //  this.$store.dispatch('setToken',data.token)
+       //  this.$store.dispatch('setUser',data.user)
+       //  this.$router.push("/dashboard");
+       //}
         this.$router.push("/dashboard");
       } else {
         this.validationErrors.map((item) => {
