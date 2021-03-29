@@ -83,7 +83,7 @@ export default {
   },
 
   mounted() {
-    this.$title = this.$t("landingTabTitle");
+    this.$title = this.$t("landing.tabTitle");
   },
 
   data() {
