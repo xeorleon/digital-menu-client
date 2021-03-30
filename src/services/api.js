@@ -1,6 +1,7 @@
 import axios from "axios";
 import store from "@/store/index";
 import router from "@/router/index";
+import cookie from "vue-cookie";
 
 const api = axios.create({
   baseURL: "https://localhost:5001",
@@ -9,9 +10,9 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    if (store.state.token) {
-      config.headers["Authorization"] = `Bearer ${store.state.token}`;
-    }
+    if (store.state.token) config.headers["Authorization"] = `Bearer ${store.state.token}`;
+    if (cookie.get("lang")) config.headers["X-Language"] = cookie.get("lang");
+    else config.headers["X-Language"] = "tr";
 
     return config;
   },
