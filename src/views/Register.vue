@@ -88,7 +88,6 @@ export default {
       if (this.validateForm()) {
         const data = await authService.register(this.credentials);
         if (data.code == 200) {
-          this.$cookie.set("refreshToken", data.data.refreshToken);
           this.$store.dispatch("setToken", data.data.token);
           this.$store.dispatch("setUser", data.data.user);
           this.$router.push("/dashboard");

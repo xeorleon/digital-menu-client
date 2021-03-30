@@ -1,15 +1,18 @@
 import axios from "axios";
 import store from "@/store/index";
-import cookie from "vue-cookie";
 import router from "@/router/index";
 
 const api = axios.create({
   baseURL: "https://localhost:5001",
+  withCredentials: true,
 });
 
 api.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = `Bearer ${store.state.token}`;
+    if (store.state.token) {
+      config.headers["Authorization"] = `Bearer ${store.state.token}`;
+    }
+
     return config;
   },
   (error) => {
@@ -23,22 +26,15 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 401) {
-      const refreshtoken = cookie.get("refreshToken");
-      if (refreshtoken) {
-        api
-          .post("/user/refresh-token", { refreshtoken: refreshtoken })
-          .then((response) => {
-            const isPersistent = store.state.isPersistent;
-            store.dispatch("setToken", response.data.data.token);
-            store.dispatch("setUser", response.data.data.user);
-            cookie.set("refreshToken", response.data.data.refreshToken, { expires: isPersistent ? 14 : undefined });
-          })
-          .catch((error) => {
-            router.push("/login");
-          });
-      } else {
-        router.push("/login");
-      }
+      api
+        .get("/user/refresh-token")
+        .then((response) => {
+          store.dispatch("setToken", response.data.data.token);
+          store.dispatch("setUser", response.data.data.user);
+        })
+        .catch((error) => {
+          router.push("/login");
+        });
     }
     return Promise.reject(error);
   }

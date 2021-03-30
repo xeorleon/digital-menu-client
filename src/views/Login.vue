@@ -55,8 +55,8 @@ export default {
   data() {
     return {
       credentials: {
-        userName: "",
-        password: "",
+        userName: "asd",
+        password: "123456",
         isPersistent: false,
       },
       validationErrors: [],
@@ -74,7 +74,6 @@ export default {
       if (this.validateForm()) {
         var data = await authService.authenticate(this.credentials);
         if (data.code === 200) {
-          this.$cookie.set("refreshToken", data.data.refreshToken, { expires: this.credentials.isPersistent ? 14 : undefined });
           this.$store.dispatch("setToken", data.data.token);
           this.$store.dispatch("setUser", data.data.user);
           this.$store.dispatch("setPersistent", this.credentials.isPersistent);
