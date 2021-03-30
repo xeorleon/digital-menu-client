@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Landing from "../views/Landing.vue";
-import Dashboard from "../views/Dashboard.vue";
+import Dashboard from "../views/Dashboard/Dashboard.vue";
 import Layout from "../components/Layout";
 Vue.use(VueRouter);
 
@@ -32,13 +32,13 @@ const routes = [
     //Layoutun içinde gösteriyoruz.
     children: [
       {
-        path: "/dashboard",
+        path: "/",
         component: Dashboard,
       },
-      // {
-      //   path: "/dashboard/ornek",
-      //   component: () => import(/* webpackChunkName: "forgot-password" */ "@/views/Ornek")
-      // }
+      {
+        path: "/account",
+        component: () => import(/* webpackChunkName: "account" */ "@/views/Dashboard/Account.vue")
+      }
     ],
   },
 ];
