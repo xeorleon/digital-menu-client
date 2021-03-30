@@ -1,7 +1,14 @@
 <template>
   <div class="authentication-wrapper authentication-2 px-4">
     <div class="authentication-inner py-5">
-      <form class="card" @submit="forgotPassword">
+      <b-card no-body v-if="emailSent">
+        <div class="p-4 p-sm-5">
+          <div class="display-1 lnr lnr-checkmark-circle text-center text-landing-primary mb-4"></div>
+          <p class="text-center text-big mb-4">{{ $t("forgotPasswordView.emailSentMessage") }}</p>
+          <b-link to="/" class="btn btn-landing-primary btn-block">{{$t("forgotPasswordView.backToHomepageButtonText")}}</b-link>
+        </div>
+      </b-card>
+      <form class="card" @submit="forgotPassword" v-else>
         <div class="p-4 p-sm-5">
           <!-- Logo -->
           <div class="d-flex justify-content-center align-items-center pb-2 mb-4">
@@ -33,6 +40,7 @@ export default {
       credentials: {
         emailAddress: "",
       },
+      emailSent: false,
     };
   },
 
@@ -45,8 +53,8 @@ export default {
       event.preventDefault();
 
       if (this.validateForm()) {
-        var data = await authService.forgotPassword(this.credentials);
-        console.log(data);
+        await authService.forgotPassword(this.credentials);
+        this.emailSent = true;
       }
     },
 

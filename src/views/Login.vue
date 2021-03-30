@@ -51,7 +51,6 @@
 // import { emailRegex } from "@/helper/constants";
 import authService from "@/services/authService";
 export default {
-  title: "Login",
   data() {
     return {
       credentials: {
@@ -61,6 +60,10 @@ export default {
       },
       validationErrors: [],
     };
+  },
+
+  beforeCreate() {
+    if (this.$store.state.isUserLoggedIn) this.$router.push("/dashboard");
   },
 
   mounted() {

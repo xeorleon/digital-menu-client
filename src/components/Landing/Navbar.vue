@@ -9,7 +9,15 @@
           <b-nav-item href="#screenshots" is="a" class="anchor-link nav-link nav-item">{{ $t("screenshots") }}</b-nav-item>
           <b-nav-item href="#pricing" is="a" class="anchor-link nav-link nav-item">{{ $t("pricing") }}</b-nav-item>
           <language-switcher />
-          <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4">
+          <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4" v-if="isUserLoggedIn">
+            <b-link to="/dashboard" class="btn-dashboard anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
+              <small>{{ $t("dashboard") }}</small>
+            </b-link>
+            <b-button variant="outline-light" class="btn-logout rounded-pill anchor-link btn text-expanded ml-1">
+              <small>{{ $t("logout") }}</small>
+            </b-button>
+          </b-nav-item>
+          <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4" v-else>
             <b-link to="/login" class="btn-login anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
               <small>{{ $t("signin") }}</small>
             </b-link>
@@ -24,6 +32,11 @@
 import LanguageSwitcher from "./LanguageSwitcher.vue";
 export default {
   components: { LanguageSwitcher },
+  data() {
+    return {
+      isUserLoggedIn: this.$store.state.isUserLoggedIn,
+    };
+  },
 
   created() {
     document.addEventListener("scroll", this.handleScroll);
@@ -37,6 +50,8 @@ export default {
       const navbarCollapse = document.getElementById("landing-navbar-collapse");
       const container = navbar.getElementsByTagName("div")[0];
       const loginBtn = document.getElementsByClassName("btn-login")[0];
+      const dashboardBtn = document.getElementsByClassName("btn-dashboard")[0];
+      const logoutBtn = document.getElementsByClassName("btn-logout")[0];
       const languageSwitcher = document.querySelector("#languageSwitcher button");
       const navbarScrollThreshold = 20;
       const navbarBreakPoint = 992;
@@ -62,8 +77,19 @@ export default {
         navbar.classList.add(navbarCustomClasses.alt.navbar);
         container.classList.remove("container-fluid");
         container.classList.add("container");
-        loginBtn.classList.add("btn-landing-primary");
-        loginBtn.classList.remove("btn-outline-light");
+        if (loginBtn) {
+          loginBtn.classList.add("btn-landing-primary");
+          loginBtn.classList.remove("btn-outline-light");
+        }
+        if (dashboardBtn) {
+          dashboardBtn.classList.add("btn-landing-primary");
+          dashboardBtn.classList.remove("btn-outline-light");
+        }
+        if (logoutBtn) {
+          logoutBtn.classList.add("btn-landing-primary");
+          logoutBtn.classList.remove("btn-outline-light");
+        }
+
         languageSwitcher.classList.add("btn-landing-primary");
         languageSwitcher.classList.remove("btn-outline-light");
       } else if (scrollTop <= navbarScrollThreshold && navbar.classList.contains("landing-navbar-alt")) {
@@ -74,8 +100,19 @@ export default {
         navbar.classList.remove(navbarCustomClasses.alt.variant);
         container.classList.remove("container");
         container.classList.add("container-fluid");
-        loginBtn.classList.add("btn-outline-light");
-        loginBtn.classList.remove("btn-landing-primary");
+        if (loginBtn) {
+          loginBtn.classList.add("btn-outline-light");
+          loginBtn.classList.remove("btn-landing-primary");
+        }
+        if (dashboardBtn) {
+          dashboardBtn.classList.add("btn-outline-light");
+          dashboardBtn.classList.remove("btn-landing-primary");
+        }
+        if (logoutBtn) {
+          logoutBtn.classList.add("btn-outline-light");
+          logoutBtn.classList.remove("btn-landing-primary");
+        }
+
         languageSwitcher.classList.add("btn-outline-light");
         languageSwitcher.classList.remove("btn-landing-primary");
 
@@ -88,6 +125,8 @@ export default {
       const navbar = document.getElementsByClassName("landing-navbar")[0];
       const navbarCollapse = document.getElementById("landing-navbar-collapse");
       const loginBtn = document.getElementsByClassName("btn-login")[0];
+      const dashboardBtn = document.getElementsByClassName("btn-dashboard")[0];
+      const logoutBtn = document.getElementsByClassName("btn-logout")[0];
       const languageSwitcher = document.querySelector("#languageSwitcher button");
       const navbarScrollThreshold = 20;
       const scrollTop = window.scrollY;
@@ -97,8 +136,19 @@ export default {
         navbar.classList.add("bg-white");
         navbar.classList.add("navbar-light");
         navbar.classList.remove("navbar-dark");
-        loginBtn.classList.add("btn-landing-primary");
-        loginBtn.classList.remove("btn-outline-light");
+        if (loginBtn) {
+          loginBtn.classList.add("btn-landing-primary");
+          loginBtn.classList.remove("btn-outline-light");
+        }
+        if (dashboardBtn) {
+          dashboardBtn.classList.add("btn-landing-primary");
+          dashboardBtn.classList.remove("btn-outline-light");
+        }
+        if (logoutBtn) {
+          logoutBtn.classList.add("btn-landing-primary");
+          logoutBtn.classList.remove("btn-outline-light");
+        }
+
         languageSwitcher.classList.add("btn-landing-primary");
         languageSwitcher.classList.remove("btn-outline-light");
       }
@@ -115,7 +165,7 @@ export default {
 
 <style>
 .landing-navbar {
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 
 .landing-navbar .nav-link {

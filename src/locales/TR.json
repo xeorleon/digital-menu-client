@@ -14,6 +14,8 @@
   "rememberMe": "Beni Hatırla",
   "forgotPassword": "Parolamı Unuttum",
   "login": "Giriş",
+  "dashboard": "Panel",
+  "logout": "Çıkış",
   "landingView": {
     "landing": {
       "tabTitle": "Anasayfa",
@@ -88,7 +90,9 @@
     "formTitle": "Parola Sıfırla",
     "formDescription": "E-posta adresinizi girdikten sonra size parolanızı sıfırlayabileceğiniz bir link göndereceğiz.",
     "inputPlaceholder": "E-posta adresinizi girin",
-    "sendEmailButtonText": "Parola Sıfırlama E-Postası Gönder"
+    "sendEmailButtonText": "Parola Sıfırlama E-Postası Gönder",
+    "emailSentMessage": "Parolanızı sıfırlamanız için size bir e-posta gönderdik. Lütfen gelen kutunuzu kontrol ediniz.",
+    "backToHomepageButtonText": "Anasayfaya Dön"
   },
   "messages": {
     "error": {

@@ -78,6 +78,10 @@ export default {
     };
   },
 
+  beforeCreate() {
+    if (this.$store.state.isUserLoggedIn) this.$router.push("/dashboard");
+  },
+
   mounted() {
     this.$title = this.$t("registerView.tabTitle");
   },
