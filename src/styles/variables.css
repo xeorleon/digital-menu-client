@@ -1,12 +1,16 @@
 :root {
   /* Colors */
   --color-landing-primary: #3ab5a1;
-  --color-landing-secondary: #1A5F9D;
+  --color-landing-primary-hover: #48d3bc;
+  --color-landing-secondary: #1a5f9d;
+  --color-landing-secondary-hover: #216fb3;
   --color-white: #ffffff;
   --color-black-opacity: rgba(0, 0, 0, 0.5);
   --color-black-brand: rgba(0, 0, 0, 0.9);
   --color-footer-text: #4e5155;
   --color-muted: #a3a4a6;
+  --color-sidenav: #838790;
+  --color-sidenav-background: #2e323a;
 
   /* Sizes */
   --navbar-link: 0.894rem;

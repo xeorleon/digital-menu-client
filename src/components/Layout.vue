@@ -1,14 +1,20 @@
 <template>
   <div>
-    <h1>Layout Compoenets Menu</h1>
-    <router-view />
-    <h1>Layout Components Footer</h1>
+    <sidenav />
+    <layout-container>
+      <router-view />
+    </layout-container>
   </div>
 </template>
 
 <script>
+import Sidenav from "./Dashboard/Sidenav.vue";
+import LayoutContainer from "./LayoutContainer.vue";
 export default {
-  
+  components: {
+    Sidenav,
+    LayoutContainer,
+  },
 };
 </script>
 
