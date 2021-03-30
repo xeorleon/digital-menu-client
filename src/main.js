@@ -13,6 +13,15 @@ import "@/styles/variables.css";
 import "@/styles/styles.css";
 import i18n from "./i18n";
 import VueCookie from "vue-cookie";
+import authService from "@/services/authService";
+
+// global logout function
+Vue.prototype.$logout = async () => {
+  const userId = store.state.user.userId;
+  store.dispatch("setUser", null);
+  store.dispatch("setToken", null);
+  await authService.logout(userId);
+};
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

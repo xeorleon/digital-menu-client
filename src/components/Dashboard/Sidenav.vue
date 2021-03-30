@@ -3,8 +3,9 @@
 </template>
 
 <script>
-import { SidebarMenu } from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
+import { SidebarMenu } from "vue-sidebar-menu";
+import authService from "@/services/authService";
 export default {
   components: {
     SidebarMenu,
@@ -29,7 +30,7 @@ export default {
             icon: "lnr lnr-user",
           },
           {
-            href: "/logout",
+            class: "logout",
             title: "Çıkış Yap",
             icon: "lnr lnr-exit",
           },
@@ -43,13 +44,21 @@ export default {
   },
   destroyed() {
     window.removeEventListener("resize", this.withChanged);
+    var logoutBtn = document.getElementsByClassName("logout")[0];
+    logoutBtn.removeEventListener("click", this.logout);
   },
   mounted() {
     window.addEventListener("resize", this.withChanged, false);
+    var logoutBtn = document.getElementsByClassName("logout")[0];
+    logoutBtn.addEventListener("click", this.logout);
   },
   methods: {
     withChanged(event) {
       this.sidenavOptions.collapsed = event.target.outerWidth < 768;
+    },
+    async logout() {
+      await this.$logout();
+      this.$router.push("/");
     },
   },
 };

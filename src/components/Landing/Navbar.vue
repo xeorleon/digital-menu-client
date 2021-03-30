@@ -13,7 +13,7 @@
             <b-link to="/dashboard" class="btn-dashboard anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
               <small>{{ $t("dashboard") }}</small>
             </b-link>
-            <b-button variant="outline-light" class="btn-logout rounded-pill anchor-link btn text-expanded ml-1">
+            <b-button @click="logout" variant="outline-light" class="btn-logout rounded-pill anchor-link btn text-expanded ml-1">
               <small>{{ $t("logout") }}</small>
             </b-button>
           </b-nav-item>
@@ -41,10 +41,16 @@ export default {
   created() {
     document.addEventListener("scroll", this.handleScroll);
   },
+
   destroyed() {
     document.removeEventListener("scroll", this.handleScroll);
   },
+
   methods: {
+    logout() {
+      this.$logout();
+      this.isUserLoggedIn = false;
+    },
     handleScroll() {
       const navbar = document.getElementsByClassName("landing-navbar")[0];
       const navbarCollapse = document.getElementById("landing-navbar-collapse");
