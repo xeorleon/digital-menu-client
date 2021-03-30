@@ -11,6 +11,9 @@
   "phoneNumber": "Telefon Numarası",
   "password": "Parola",
   "passwordConfirm": "Parolar Tekrar",
+  "rememberMe": "Beni Hatırla",
+  "forgotPassword": "Parolamı Unuttum",
+  "login": "Giriş",
   "landingView": {
     "landing": {
       "tabTitle": "Anasayfa",
@@ -52,31 +55,33 @@
     "pricingBlock": {
       "title": "İhtiyacınıza Uygun Paketi Seçin"
     },
-    "freeTrialButtonText": "14 Gün Ücretsiz Deneyin",
-    "footer": {
-      "whoWeAre": "Biz Kimiz?",
-      "aboutus": "Hakkımızda",
-      "ourstory": "Hikayemiz",
-      "crew": "Takım",
-      "support": "Destek",
-      "faq": "SSS",
-      "privacyPolicy": "Gizlilik Politikası",
-      "contact": "İletişim",
-      "socialMedia": "Sosyal Medya"
-    }
+    "freeTrialButtonText": "14 Gün Ücretsiz Deneyin"
+  },
+  "footer": {
+    "whoWeAre": "Biz Kimiz?",
+    "aboutus": "Hakkımızda",
+    "ourstory": "Hikayemiz",
+    "crew": "Takım",
+    "support": "Destek",
+    "faq": "SSS",
+    "privacyPolicy": "Gizlilik Politikası",
+    "contact": "İletişim",
+    "socialMedia": "Sosyal Medya"
   },
   "registerView": {
     "tabTitle": "Kayıt Ol",
-    "pageTitle": "ARAMIZA KATILIN",
-    "pageDescription": "",
+    "pageTitle": "ARAMIZA <br /> KATILIN",
+    "pageDescription": "Üyeliğinizi tamamladıktan sonra 14 günlük deneme sürümünü kullanmaya başlayabilirsiniz.",
     "formTitle": "Yeni Hesap Oluşturun",
-    "disclaimer": "'Kayıt Ol' butonuna tıklayarak gizlilik politikamızı kabul etmiş sayılırsınız."
+    "disclaimer": "'Kayıt Ol' butonuna tıklayarak gizlilik politikamızı kabul etmiş sayılırsınız.",
+    "moreInformation": "Detaylı bilgi için tıklayınız.",
+    "alreadyHaveAnAccount": "Zaten üye misiniz?"
   },
   "loginView": {
     "tabTitle": "Giriş Yap",
-    "pageTitle": "",
-    "pageDescription": "",
-    "formTitle": "Giriş Yap"
+    "pageTitle": "TEKRAR HOŞGELDİNİZ <br />",
+    "formTitle": "Giriş Yap",
+    "dontHaveAnAccountYet": "Henüz üye değil misiniz?"
   },
   "forgotPasswordView": {
     "tabTitle": "Parolamı Unuttum",
@@ -85,21 +90,19 @@
     "inputPlaceholder": "E-posta adresinizi girin",
     "sendEmailButtonText": "Parola Sıfırlama E-Postası Gönder"
   },
-
-  "alreadyHaveAnAccount": "Zaten üye misiniz?",
-  "rememberMe": "Beni Hatırla",
-  "forgotPassword": "Parolamı Unuttum",
-  "login": "Giriş",
-  "dontHaveAnAccountYet": "Henüz üye değil misiniz?",
-
-  "usernameRequiredError": "Kullanıcı adı alanı boş bırakılamaz.",
-  "firstNameRequiredError": "İsim alanı boş bırakılamaz.",
-  "lastNameRequiredError": "Soyisim alanı boş bırakılamaz.",
-  "emailRequiredError": "E-posta alanı boş bırakılamaz.",
-  "emailWrongFormatError": "Lütfen geçerli bir e-posta giriniz.",
-  "passwordRequiredError": "Parola alanı boş bırakılamaz.",
-  "passwordsDontMatchError": "Parolalar uyuşmuyor.",
-  "usernameMaxLengthError": "Kullanıcı adı 16 karakterden uzun olamaz.",
-  "firstNameMaxLengthError": "İsim 16 karakterden uzun olamaz.",
-  "lastNameMaxLengthError": "Soyisim 16 karakterden uzun olamaz."
+  "messages": {
+    "error": {
+      "usernameRequiredError": "Kullanıcı adı alanı boş bırakılamaz.",
+      "firstNameRequiredError": "İsim alanı boş bırakılamaz.",
+      "lastNameRequiredError": "Soyisim alanı boş bırakılamaz.",
+      "emailRequiredError": "E-posta alanı boş bırakılamaz.",
+      "emailWrongFormatError": "Lütfen geçerli bir e-posta giriniz.",
+      "passwordRequiredError": "Parola alanı boş bırakılamaz.",
+      "passwordLengthError": "Parola 6-16 karakter uzunluğunda olmalıdır.",
+      "passwordsDontMatchError": "Parolalar uyuşmuyor.",
+      "usernameMaxLengthError": "Kullanıcı adı 16 karakterden uzun olamaz.",
+      "firstNameMaxLengthError": "İsim 16 karakterden uzun olamaz.",
+      "lastNameMaxLengthError": "Soyisim 16 karakterden uzun olamaz."
+    }
+  }
 }

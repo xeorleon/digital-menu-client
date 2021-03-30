@@ -32,7 +32,7 @@ const routes = [
     //Layoutun içinde gösteriyoruz.
     children: [
       {
-        path: "",
+        path: "/dashboard",
         component: Dashboard,
       },
       // {

@@ -5,10 +5,9 @@
       <b-container fluid class="pr-lg-5 pl-xl-5">
         <b-row no-gutters class="justify-content-center w-100 pt-3">
           <b-col lg="7" xl="6" class="text-lg-left text-center my-5 mr-xl-5">
-            <h1 class="display-4 font-secondary text-white font-weight-semibold mb-4">{{ $t("landingHeading") }}</h1>
-            <p><router-link to="Dashboard">Dashboard</router-link></p>
-            <p class="lead text-light pb-3">{{ $t("landingText") }}</p>
-            <b-link to="/register" class="btn-outline-light btn btn-lg rounded-pill mt-2">{{ $t("landingButtonText") }}</b-link>
+            <h1 class="display-4 font-secondary text-white font-weight-semibold mb-4">{{ $t("landingView.landing.heading") }}</h1>
+            <p class="lead text-light pb-3">{{ $t("landingView.landing.text") }}</p>
+            <b-link to="/register" class="btn-outline-light btn btn-lg rounded-pill mt-2">{{ $t("landingView.landing.buttonText") }}</b-link>
           </b-col>
           <b-col lg="5" class="text-center pl-lg-5 pl-xl-2 my-5">
             <img class="w-100" src="../assets/landing-img.png" style="max-width: 550px" />
@@ -23,8 +22,8 @@
             <div class="display-4 text-landing-primary mb-4">
               <i class="lnr lnr-rocket"></i>
             </div>
-            <h1 class="display-5 font-secondary font-weight-semibold mb-5">{{ $t("landingDescriptionTitle") }}</h1>
-            <div class="custom-text-muted">{{ $t("landingDescriptionContent") }}</div>
+            <h1 class="display-5 font-secondary font-weight-semibold mb-5">{{ $t("landingView.landing.descriptionTitle") }}</h1>
+            <div class="custom-text-muted">{{ $t("landingView.landing.descriptionContent") }}</div>
           </b-col>
         </b-container>
       </div>
@@ -34,8 +33,8 @@
       <b-container class="px-3">
         <b-col md="10" lg="8" xl="7" class="text-center p-0 mx-auto">
           <div class="text-center custom-text-muted text-small font-weight-bold mb-3">{{ $t("features").toLocaleUpperCase() }}</div>
-          <h1 class="display-5 font-secondary font-weight-semibold mb-4">{{ $t("featuresBlockTitle") }}</h1>
-          <div class="custom-text-muted mb-5">{{ $t("featuresBlockDescription") }}</div>
+          <h1 class="display-5 font-secondary font-weight-semibold mb-4">{{ $t("landingView.featuresBlock.title") }}</h1>
+          <div class="custom-text-muted mb-5">{{ $t("landingView.featuresBlock.description") }}</div>
         </b-col>
         <hr class="landing-separator border-light mx-auto" />
         <b-row class="text-center">
@@ -47,8 +46,8 @@
       <discover-app />
     </div>
     <b-container class="landing-block px-3">
-      <div class="text-center custom-text-muted text-small font-weight-bold mb-3">{{ $t("howItWorksBlockSubTitle") }}</div>
-      <h1 class="display-5 font-secondary text-center font-weight-semibold">{{ $t("howItWorksBlockTitle") }}</h1>
+      <div class="text-center custom-text-muted text-small font-weight-bold mb-3">{{ $t("landingView.howItWorksBlock.subTitle") }}</div>
+      <h1 class="display-5 font-secondary text-center font-weight-semibold">{{ $t("landingView.howItWorksBlock.title") }}</h1>
       <hr class="landing-separator border-success mx-auto mt-5 mb-4" />
       <b-row class="text-center">
         <how-it-works v-for="(item, index) in howItWorks" :key="index" :iconClass="item.iconClass" :title="item.title" :description="item.description" />
@@ -57,7 +56,7 @@
     <div class="bg-white">
       <b-container id="pricing" class="landing-block px-3">
         <div class="text-center custom-text-muted text-small font-weight-bold mb-3">{{ $t("pricing").toLocaleUpperCase() }}</div>
-        <h1 class="display-5 font-secondary text-center font-weight-semibold">{{ $t("pricingBlockTitle") }}</h1>
+        <h1 class="display-5 font-secondary text-center font-weight-semibold">{{ $t("landingView.pricingBlock.title") }}</h1>
         <hr class="landing-separator border-primary my-5 mx-auto" />
         <pricing :subscriptionTypes="subscriptionType" />
       </b-container>
@@ -84,7 +83,7 @@ export default {
   },
 
   mounted() {
-    this.$title = this.$t("landing.tabTitle");
+    this.$title = this.$t("landingView.landing.tabTitle");
   },
 
   data() {
@@ -95,17 +94,17 @@ export default {
         { title: "test3", price: 15 },
       ],
       features: [
-        { title: this.$t("features1-Title"), description: this.$t("features1-Description"), iconClass: "lnr lnr-star" },
-        { title: this.$t("features2-Title"), description: this.$t("features2-Description"), iconClass: "lnr lnr-star" },
-        { title: this.$t("features3-Title"), description: this.$t("features3-Description"), iconClass: "lnr lnr-star" },
-        { title: this.$t("features4-Title"), description: this.$t("features4-Description"), iconClass: "lnr lnr-star" },
-        { title: this.$t("features5-Title"), description: this.$t("features5-Description"), iconClass: "lnr lnr-star" },
-        { title: this.$t("features6-Title"), description: this.$t("features6-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.featuresBlock.features1-Title"), description: this.$t("landingView.featuresBlock.features1-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.featuresBlock.features2-Title"), description: this.$t("landingView.featuresBlock.features2-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.featuresBlock.features3-Title"), description: this.$t("landingView.featuresBlock.features3-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.featuresBlock.features4-Title"), description: this.$t("landingView.featuresBlock.features4-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.featuresBlock.features5-Title"), description: this.$t("landingView.featuresBlock.features5-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.featuresBlock.features6-Title"), description: this.$t("landingView.featuresBlock.features6-Description"), iconClass: "lnr lnr-star" },
       ],
       howItWorks: [
-        { title: this.$t("howItWorks1-Title"), description: this.$t("howItWorks1-Description"), iconClass: "lnr lnr-star" },
-        { title: this.$t("howItWorks2-Title"), description: this.$t("howItWorks2-Description"), iconClass: "lnr lnr-star" },
-        { title: this.$t("howItWorks3-Title"), description: this.$t("howItWorks3-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.howItWorksBlock.howItWorks1-Title"), description: this.$t("landingView.howItWorksBlock.howItWorks1-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.howItWorksBlock.howItWorks2-Title"), description: this.$t("landingView.howItWorksBlock.howItWorks2-Description"), iconClass: "lnr lnr-star" },
+        { title: this.$t("landingView.howItWorksBlock.howItWorks3-Title"), description: this.$t("landingView.howItWorksBlock.howItWorks3-Description"), iconClass: "lnr lnr-star" },
       ],
     };
   },

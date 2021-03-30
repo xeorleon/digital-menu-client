@@ -19,7 +19,7 @@
     </b-row>
 
     <div class="text-center pt-4">
-      <b-link class="btn btn-landing-primary btn-lg" to="/register">{{ $t("freeTrialButtonText") }}</b-link>
+      <b-link class="btn btn-landing-primary btn-lg" to="/register">{{ $t("landingView.freeTrialButtonText") }}</b-link>
     </div>
   </div>
 </template>

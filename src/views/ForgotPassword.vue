@@ -11,13 +11,13 @@
           </div>
           <!-- / Logo -->
 
-          <h5 class="text-center text-muted font-weight-normal mb-4">{{ $t("forgotPasswordFormTitle") }}</h5>
+          <h5 class="text-center text-muted font-weight-normal mb-4">{{ $t("forgotPasswordView.formTitle") }}</h5>
           <hr class="mt-0 mb-4" />
-          <p>{{ $t("forgotPasswordFormDescription") }}</p>
+          <p>{{ $t("forgotPasswordView.formDescription") }}</p>
           <b-form-group>
-            <b-input v-model="credentials.emailAddress" :placeholder="this.$t('forgotPasswordInputPlaceholder')" />
+            <b-input v-model="credentials.emailAddress" :placeholder="this.$t('forgotPasswordView.inputPlaceholder')" />
           </b-form-group>
-          <b-btn type="submit" variant="landing-primary" :block="true">{{ $t("forgotPasswordSendEmailButtonText") }}</b-btn>
+          <b-btn type="submit" variant="landing-primary" :block="true">{{ $t("forgotPasswordView.sendEmailButtonText") }}</b-btn>
         </div>
       </form>
     </div>
@@ -28,14 +28,16 @@
 import { emailRegex } from "@/helper/constants";
 import authService from "@/services/authService";
 export default {
-  data: () => ({
-    credentials: {
-      emailAddress: "",
-    },
-  }),
+  data() {
+    return {
+      credentials: {
+        emailAddress: "",
+      },
+    };
+  },
 
   mounted() {
-    this.$title = this.$t("forgotPasswordTabTitle");
+    this.$title = this.$t("forgotPasswordView.tabTitle");
   },
 
   methods: {
@@ -52,7 +54,7 @@ export default {
       if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) {
         this.$notify({
           group: "notify",
-          text: this.$t("emailRequiredError"),
+          text: this.$t("messages.error.emailRequiredError"),
           duration: 5000,
           type: "error",
         });
@@ -60,7 +62,7 @@ export default {
       } else if (!emailRegex.test(this.credentials.emailAddress)) {
         this.$notify({
           group: "notify",
-          text: this.$t("emailWrongFormatError"),
+          text: this.$t("messages.error.emailWrongFormatError"),
           duration: 5000,
           type: "error",
         });

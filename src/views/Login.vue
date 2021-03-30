@@ -4,8 +4,7 @@
       <b-col lg="8" class="d-none d-lg-flex align-items-center ui-bg-cover ui-bg-overlay-container p-5 login-bg">
         <div class="ui-bg-overlay custom-bg-dark opacity-50"></div>
         <div class="w-100 text-white px-5">
-          <h1 class="display-3 font-weight-bolder mb-4">JOIN OUR<br />COMMUNITY</h1>
-          <div class="text-large font-weight-light">{{ $t("loginPageDescription") }}</div>
+          <h1 class="display-3 font-weight-bolder mb-4" v-html="$t('loginView.pageTitle')"></h1>
         </div>
       </b-col>
       <b-col lg="4" class="theme-bg-white d-flex align-items-center p-5">
@@ -19,7 +18,7 @@
             </div>
             <!-- / Logo -->
 
-            <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">{{ $t("loginFormTitle") }}</h4>
+            <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">{{ $t("loginView.formTitle") }}</h4>
             <form class="my-5" @submit="login">
               <b-form-group :label="this.$t('username')">
                 <b-input v-model="credentials.userName" />
@@ -34,11 +33,11 @@
 
               <div class="d-flex justify-content-between align-items-center m-0">
                 <b-check v-model="credentials.isPersistent" class="m-0">{{ $t("rememberMe") }}</b-check>
-                <b-btn type="submit" variant="landing-primary">Login</b-btn>
+                <b-btn type="submit" variant="landing-primary">{{ $t("signin") }}</b-btn>
               </div>
             </form>
             <div class="text-center text-muted">
-              {{ $t("dontHaveAnAccountYet") }}
+              {{ $t("loginView.dontHaveAnAccountYet") }}
               <b-link to="/register" class="text-landing-primary">{{ $t("signup") }}</b-link>
             </div>
           </div>
@@ -53,17 +52,19 @@
 import authService from "@/services/authService";
 export default {
   title: "Login",
-  data: () => ({
-    credentials: {
-      userName: "",
-      password: "",
-      isPersistent: false,
-    },
-    validationErrors: [],
-  }),
+  data() {
+    return {
+      credentials: {
+        userName: "",
+        password: "",
+        isPersistent: false,
+      },
+      validationErrors: [],
+    };
+  },
 
   mounted() {
-    this.$title = this.$t("loginTabTitle");
+    this.$title = this.$t("loginView.tabTitle");
   },
 
   methods: {
@@ -93,9 +94,9 @@ export default {
     },
 
     validateForm() {
-      if (this.credentials.userName === "" || this.credentials.userName === undefined || this.credentials.userName === null) this.validationErrors.push("kullanici adi giriniz.");
+      if (this.credentials.userName === "" || this.credentials.userName === undefined || this.credentials.userName === null) this.validationErrors.push(this.$t("messages.error.usernameRequiredError"));
       // else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push("E-posta doğru formatta olmalidir");
-      if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push("parola giriniz.");
+      if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push(this.$t("messages.error.passwordRequiredError"));
 
       if (this.validationErrors.length > 0) return false;
       return true;
