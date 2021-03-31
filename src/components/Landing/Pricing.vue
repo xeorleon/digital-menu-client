@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row no-gutters class="text-center pt-4">
-      <b-col md="4" class="d-flex flex-column py-4" :class="index != 2 ? 'pricing-bordered' : ''" v-for="(type, index) in subscriptionTypes" :key="index">
+      <b-col md="4" class="d-flex flex-column py-4" :class="index != 2 ? 'pricing-bordered' : ''" v-for="(type, index) in subscriptionTypes" :key="type.id">
         <h5 class="m-0">{{ type.title }}</h5>
         <div class="flex-grow-1">
           <div class="py-4 my-2">
@@ -10,9 +10,9 @@
             <span class="d-inline-block text-muted text-big align-middle ml-2">/ mo</span>
           </div>
           <div class="pb-5">
-            <p class="small mb-2">5 users</p>
-            <p class="small mb-2">10 projects</p>
-            <p class="small mb-0">100GB space</p>
+            <p class="mb-2" v-for="(feature, index) in type.features" :key="index">
+              {{ feature.isUnlimited ? $t("landingView.pricingBlock.unlimited") : feature.totalValue }} {{ feature.name }}
+            </p>
           </div>
         </div>
       </b-col>

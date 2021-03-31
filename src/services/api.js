@@ -11,7 +11,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     if (store.state.token) config.headers["Authorization"] = `Bearer ${store.state.token}`;
-    if (cookie.get("lang")) config.headers["X-Language"] = cookie.get("lang");
+    if (cookie.get("lang")) config.headers["X-Language"] = cookie.get("lang").toLowerCase();
     else config.headers["X-Language"] = "tr";
 
     return config;
@@ -22,8 +22,8 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => {
-    return response;
+  (success) => {
+    return success;
   },
   (error) => {
     if (error.response.status === 401) {

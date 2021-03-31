@@ -72,6 +72,8 @@ import HowItWorks from "@/components/Landing/HowItWorks.vue";
 import Pricing from "@/components/Landing/Pricing.vue";
 import AppFooter from "@/components/Landing/Footer.vue";
 import AppNavbar from "@/components/Landing/Navbar.vue";
+import subscriptionService from "@/services/subscriptionService";
+
 export default {
   components: {
     Feature,
@@ -82,17 +84,9 @@ export default {
     AppNavbar,
   },
 
-  mounted() {
-    this.$title = this.$t("landingView.landing.tabTitle");
-  },
-
   data() {
     return {
-      subscriptionType: [
-        { title: "test1", price: 5 },
-        { title: "test2", price: 10 },
-        { title: "test3", price: 15 },
-      ],
+      subscriptionType: [],
       features: [
         { title: this.$t("landingView.featuresBlock.features1-Title"), description: this.$t("landingView.featuresBlock.features1-Description"), iconClass: "lnr lnr-star" },
         { title: this.$t("landingView.featuresBlock.features2-Title"), description: this.$t("landingView.featuresBlock.features2-Description"), iconClass: "lnr lnr-star" },
@@ -107,6 +101,12 @@ export default {
         { title: this.$t("landingView.howItWorksBlock.howItWorks3-Title"), description: this.$t("landingView.howItWorksBlock.howItWorks3-Description"), iconClass: "lnr lnr-star" },
       ],
     };
+  },
+
+  async mounted() {
+    this.$title = this.$t("landingView.landing.tabTitle");
+    const data = await subscriptionService.getSubscriptionTypes();
+    this.subscriptionType = data.data;
   },
 };
 </script>

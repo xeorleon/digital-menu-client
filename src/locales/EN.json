@@ -53,7 +53,8 @@
       "howItWorks3-Description": "Size özel oluşturulan QR kodu yazdırdıktan sonra masalarınıza konumlandırın."
     },
     "pricingBlock": {
-      "title": "İhtiyacınıza Uygun Paketi Seçin"
+      "title": "İhtiyacınıza Uygun Paketi Seçin",
+      "unlimited": "Unlimited"
     },
     "freeTrialButtonText": "14 Gün Ücretsiz Deneyin"
   },
