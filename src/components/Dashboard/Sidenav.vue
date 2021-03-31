@@ -57,7 +57,10 @@ export default {
       this.sidenavOptions.collapsed = event.target.outerWidth < 768;
     },
     async logout() {
-      await this.$logout();
+      const userId = this.$store.state.user.userId;
+      this.$store.dispatch("setUser", null);
+      this.$store.dispatch("setToken", null);
+      await authService.logout(userId);
       this.$router.push("/");
     },
   },

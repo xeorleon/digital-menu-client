@@ -16,4 +16,8 @@ export default {
     var response = await api.post("/user/forgot-password", credentials);
     return response.data;
   },
+  async logout(userId){
+    var response = await api.delete(`/user/logout/${userId}`);
+    return response.data;
+  }
 };
