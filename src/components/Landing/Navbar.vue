@@ -8,7 +8,7 @@
           <b-nav-item href="#features" is="a" class="anchor-link nav-link nav-item">{{ $t("features") }}</b-nav-item>
           <b-nav-item href="#screenshots" is="a" class="anchor-link nav-link nav-item">{{ $t("screenshots") }}</b-nav-item>
           <b-nav-item href="#pricing" is="a" class="anchor-link nav-link nav-item">{{ $t("pricing") }}</b-nav-item>
-          <language-switcher />
+          <language-switcher v-on:languageChanged="handleLanguageChange" />
           <b-nav-item is="div" class="nav-item py-3 py-lg-0 ml-lg-4" v-if="isUserLoggedIn">
             <b-link to="/dashboard" class="btn-dashboard anchor-link btn btn-outline-light rounded-pill text-expanded ml-1">
               <small>{{ $t("dashboard") }}</small>
@@ -50,6 +50,9 @@ export default {
     logout() {
       this.$logout();
       this.isUserLoggedIn = false;
+    },
+    handleLanguageChange() {
+      this.$emit("changePricingLang");
     },
     handleScroll() {
       const navbar = document.getElementsByClassName("landing-navbar")[0];

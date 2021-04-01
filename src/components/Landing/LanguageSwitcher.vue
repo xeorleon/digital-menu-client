@@ -20,6 +20,8 @@ export default {
       this.$i18n.locale = locale;
       this.selectedLang = locale.toUpperCase();
       this.$cookie.set("lang", locale, { expires: 365 });
+
+      this.$emit("languageChanged");
     },
   },
   mounted() {

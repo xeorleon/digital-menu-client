@@ -1,6 +1,6 @@
 <template>
   <div class="landing light-style">
-    <app-navbar />
+    <app-navbar v-on:changePricingLang="handleChangePricingLang" />
     <b-jumbotron class="ui-hero ui-mh-100vh ui-bg-cover">
       <b-container fluid class="pr-lg-5 pl-xl-5">
         <b-row no-gutters class="justify-content-center w-100 pt-3">
@@ -103,10 +103,19 @@ export default {
     };
   },
 
+  methods: {
+    async fetchSubscriptionTypes() {
+      this.$title = this.$t("landingView.landing.tabTitle");
+      const data = await subscriptionService.getSubscriptionTypes();
+      this.subscriptionType = data.data;
+    },
+    async handleChangePricingLang() {
+      await this.fetchSubscriptionTypes();
+    },
+  },
+
   async mounted() {
-    this.$title = this.$t("landingView.landing.tabTitle");
-    const data = await subscriptionService.getSubscriptionTypes();
-    this.subscriptionType = data.data;
+    await this.fetchSubscriptionTypes();
   },
 };
 </script>
