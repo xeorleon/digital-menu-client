@@ -95,6 +95,13 @@ export default {
           this.$store.dispatch("setToken", data.data.token);
           this.$store.dispatch("setUser", data.data.user);
           this.$router.push("/dashboard");
+        } else if (data.code === 409) {
+          this.$notify({
+            group: "notify",
+            text: "Kullanıcı adı veya e-mail daha önce alınmış.",
+            duration: 5000,
+            type: "error",
+          });
         }
       } else {
         this.validationErrors.map((item) => {

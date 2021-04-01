@@ -27,25 +27,19 @@ api.interceptors.response.use(
     return success;
   },
   (error) => {
-    if (error.response.status === 401) {
+    if (error.response.status === 401 && router.currentRoute.name !== "Login") {
       api
         .get("/user/refresh-token")
         .then((response) => {
           store.dispatch("setToken", response.data.data.token);
           store.dispatch("setUser", response.data.data.user);
         })
-        .catch((error) => {
+        .catch(() => {
           router.push("/login");
         });
-    } else if (error.response.status === 404 && router.currentRoute.name === "Login") {
-      Vue.notify({
-        group: "notify",
-        text: "Lütfen bilgilerinizi kontrol ediniz.",
-        duration: 5000,
-        type: "error",
-      });
     }
-    return Promise.reject(error);
+    
+    return error.response;
   }
 );
 

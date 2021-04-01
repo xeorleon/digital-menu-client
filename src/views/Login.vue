@@ -81,6 +81,13 @@ export default {
           this.$store.dispatch("setUser", data.data.user);
           this.$store.dispatch("setPersistent", this.credentials.isPersistent);
           this.$router.push("/dashboard");
+        } else if (data.code === 401) {
+          this.$notify({
+            group: "notify",
+            text: "Lütfen bilgilerinizi kontrol ediniz.",
+            duration: 5000,
+            type: "error",
+          })
         }
       } else {
         this.validationErrors.map((item) => {
