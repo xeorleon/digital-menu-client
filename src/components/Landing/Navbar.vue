@@ -30,6 +30,7 @@
 
 <script>
 import LanguageSwitcher from "./LanguageSwitcher.vue";
+import authService from "@/services/authService";
 export default {
   components: { LanguageSwitcher },
   data() {
@@ -47,9 +48,12 @@ export default {
   },
 
   methods: {
-    logout() {
-      this.$logout();
-      this.isUserLoggedIn = false;
+    async logout() {
+      const userId = this.$store.state.user.userId;
+      this.$store.dispatch("setUser", null);
+      this.$store.dispatch("setToken", null);
+      await authService.logout(userId);
+      this.$router.push("/");
     },
     handleLanguageChange() {
       this.$emit("changePricingLang");

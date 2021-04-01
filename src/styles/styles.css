@@ -57,6 +57,16 @@ a.text-landing-primary:hover {
   text-decoration: underline;
 }
 
+.btn-landing-secondary {
+  background-color: var(--color-landing-secondary);
+  color: var(--color-white);
+}
+
+.btn-landing-secondary:hover {
+  background-color: var(--color-landing-secondary);
+  color: var(--color-white);
+}
+
 .custom-text-muted {
   color: var(--color-muted) !important;
 }
@@ -71,6 +81,10 @@ a.text-landing-primary:hover {
 
 .custom-bg-dark {
   background-color: rgba(24, 28, 33, 0.9) !important;
+}
+
+.text-secondary {
+  color: var(--color-landing-secondary) !important;
 }
 
 .authentication-wrapper {
