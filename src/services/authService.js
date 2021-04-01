@@ -9,7 +9,6 @@ export default {
   // 200 => OK, 404 => username or password incorrect
   async authenticate(credentials) {
     var response = await api.post("/user/authenticate", credentials);
-    console.log(response);
     return response.data;
   },
   async forgotPassword(credentials) {

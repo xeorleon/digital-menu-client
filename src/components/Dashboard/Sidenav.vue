@@ -42,11 +42,6 @@ export default {
       },
     };
   },
-  destroyed() {
-    window.removeEventListener("resize", this.withChanged);
-    var logoutBtn = document.getElementsByClassName("logout")[0];
-    logoutBtn.removeEventListener("click", this.logout);
-  },
   mounted() {
     window.addEventListener("resize", this.withChanged, false);
     var logoutBtn = document.getElementsByClassName("logout")[0];

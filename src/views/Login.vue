@@ -54,8 +54,8 @@ export default {
   data() {
     return {
       credentials: {
-        userName: "asd",
-        password: "123456",
+        userName: "erenkaya",
+        password: "asdasd",
         isPersistent: false,
       },
       validationErrors: [],
@@ -97,7 +97,6 @@ export default {
 
     validateForm() {
       if (this.credentials.userName === "" || this.credentials.userName === undefined || this.credentials.userName === null) this.validationErrors.push(this.$t("messages.error.usernameRequiredError"));
-      // else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push("E-posta doğru formatta olmalidir");
       if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push(this.$t("messages.error.passwordRequiredError"));
 
       if (this.validationErrors.length > 0) return false;

@@ -2,6 +2,7 @@ import axios from "axios";
 import store from "@/store/index";
 import router from "@/router/index";
 import cookie from "vue-cookie";
+import Vue from "vue";
 
 const api = axios.create({
   baseURL: "https://localhost:5001",
@@ -36,6 +37,13 @@ api.interceptors.response.use(
         .catch((error) => {
           router.push("/login");
         });
+    } else if (error.response.status === 404 && router.currentRoute.name === "Login") {
+      Vue.notify({
+        group: "notify",
+        text: "Lütfen bilgilerinizi kontrol ediniz.",
+        duration: 5000,
+        type: "error",
+      });
     }
     return Promise.reject(error);
   }
