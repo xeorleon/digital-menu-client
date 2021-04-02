@@ -19,7 +19,7 @@
             <!-- / Logo -->
 
             <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">{{ $t("loginView.formTitle") }}</h4>
-            <form class="my-5" @submit="login">
+            <form class="my-5" @submit.prevent="login">
               <b-form-group :label="this.$t('username')">
                 <b-input v-model="credentials.userName" />
               </b-form-group>
@@ -71,9 +71,7 @@ export default {
   },
 
   methods: {
-    async login(event) {
-      event.preventDefault();
-
+    async login() {
       if (this.validateForm()) {
         var data = await authService.authenticate(this.credentials);
         if (data.code === 200) {

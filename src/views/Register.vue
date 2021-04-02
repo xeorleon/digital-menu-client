@@ -20,7 +20,7 @@
             <!-- / Logo -->
 
             <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">{{ $t("registerView.formTitle") }}</h4>
-            <form class="my-5" @submit="register">
+            <form class="my-5" @submit.prevent="register">
               <b-form-group :label="this.$t('username')">
                 <b-input v-model.trim="credentials.username" />
               </b-form-group>
@@ -87,8 +87,7 @@ export default {
   },
 
   methods: {
-    async register(event) {
-      event.preventDefault();
+    async register() {
       if (this.validateForm()) {
         const data = await authService.register(this.credentials);
         if (data.code == 200) {

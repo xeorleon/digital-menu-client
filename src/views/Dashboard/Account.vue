@@ -2,7 +2,7 @@
   <div>
     <b-card no-body>
       <b-tabs card>
-        <form class="my-5" @submit="submitAccountForm">
+        <form class="my-5" @submit.prevent="submitAccountForm" enctype="multipart/form-data">
           <b-tab title="Hesap" title-link-class="text-secondary" active>
             <b-form-group :label="this.$t('username')">
               <b-input v-model.trim="user.username" />
@@ -22,6 +22,17 @@
             <b-btn type="submit" variant="landing-secondary" class="mt-4">Kaydet</b-btn>
           </b-tab>
           <b-tab title="İşletme" title-link-class="text-secondary">
+            <b-row>
+              <b-col cols="12" sm="6">
+                <b-form-group label="Logo">
+                  <b-form-file @input="imagePreview" v-model="user.companyImageFile" placeholder="Dosya Seç veya Sürükle" drop-placeholder="Buraya Bırak" />
+                </b-form-group>
+              </b-col>
+              <b-col cols="12" sm="6">
+                <b-img v-if="this.imageUrl" :src="this.imageUrl" class="logo-preview" fluid />
+              </b-col>
+            </b-row>
+
             <b-form-group label="Şirket Adı">
               <b-input v-model.trim="user.companyName" @input="updateCompanySlug" />
             </b-form-group>
@@ -61,7 +72,9 @@ import { emailRegex } from "@/helper/constants";
 export default {
   data() {
     return {
-      user: {},
+      user: {
+        companyImageFile: null,
+      },
       passwordCredentials: {
         oldPassword: "",
         newPassword: "",
@@ -69,6 +82,7 @@ export default {
       newPasswordConfirm: "",
       customSlug: false,
       validationErrors: [],
+      imageUrl: "",
     };
   },
   methods: {
@@ -77,9 +91,8 @@ export default {
         this.user.companySlug = this.user.companyName.toLowerCase().replaceAll("ü", "u").replaceAll("ı", "i").replaceAll("ğ", "g").replaceAll("ş", "s").replaceAll("ö", "o").replaceAll(" ", "-").replaceAll(".", "-");
       }
     },
-    async submitAccountForm(event) {
-      event.preventDefault();
-
+    async submitAccountForm() {
+      console.log(this.user.companyImageFile);
       if (this.valiteAccountForm()) {
         var data = await accountService.updateProfile(this.user);
         if (data.code === 200) {
@@ -147,6 +160,10 @@ export default {
       }
     },
 
+    imagePreview(event) {
+      this.imageUrl = URL.createObjectURL(event);
+    },
+
     valiteAccountForm() {
       if (this.user.username === "" || this.user.username === undefined || this.user.username === null) this.validationErrors.push(this.$t("messages.error.usernameRequiredError"));
       else if (this.user.username.length > 16) this.validationErrors.push(this.$t("messages.error.usernameMaxLengthError"));
@@ -176,6 +193,13 @@ export default {
 
   mounted() {
     this.user = this.$store.state.user;
+    this.imageUrl = this.$store.state.user.companyImageName;
   },
 };
 </script>
+
+<style>
+.logo-preview {
+  max-height: 75px;
+}
+</style>
