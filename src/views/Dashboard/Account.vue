@@ -2,7 +2,7 @@
   <div>
     <b-card no-body>
       <b-tabs card>
-        <form class="my-5" @submit.prevent="submitAccountForm" enctype="multipart/form-data">
+        <form class="my-5" @submit.prevent="submitAccountForm">
           <b-tab title="Hesap" title-link-class="text-secondary" active>
             <b-form-group :label="this.$t('username')">
               <b-input v-model.trim="user.username" />
@@ -19,36 +19,37 @@
             <b-form-group :label="this.$t('phoneNumber')">
               <b-input v-model.trim="user.phoneNumber" />
             </b-form-group>
-            <b-btn type="submit" variant="landing-secondary" class="mt-4">Kaydet</b-btn>
+            <b-btn type="submit" variant="landing-secondary" class="mt-4">Hesap Bilgilerini Güncelle</b-btn>
           </b-tab>
+        </form>
+        <form class="my-5" @submit.prevent="submitCompanyForm">
           <b-tab title="İşletme" title-link-class="text-secondary">
             <b-row>
               <b-col cols="12" sm="6">
                 <b-form-group label="Logo">
-                  <b-form-file @input="imagePreview" v-model="user.companyImageFile" placeholder="Dosya Seç veya Sürükle" drop-placeholder="Buraya Bırak" />
+                  <b-form-file @input="imagePreview" placeholder="Dosya Seç veya Sürükle" drop-placeholder="Buraya Bırak" />
                 </b-form-group>
               </b-col>
               <b-col cols="12" sm="6">
-                <b-img v-if="this.imageUrl" :src="this.imageUrl" class="logo-preview" fluid />
+                <b-img v-if="this.imageUrl" :src="imageUrl" class="logo-preview" fluid />
               </b-col>
             </b-row>
-
             <b-form-group label="Şirket Adı">
-              <b-input v-model.trim="user.companyName" @input="updateCompanySlug" />
+              <b-input v-model.trim="company.name" @input="updateCompanySlug" />
             </b-form-group>
             <b-form-group label="Linkimi kendim oluşturacağım.">
               <b-form-checkbox v-model.trim="customSlug" />
             </b-form-group>
             <b-form-group label="Menü Linki (Bu alanı değiştirseniz QR kodunuzu da yenilemeniz gerekmektedir.)">
               <b-input-group prepend="https://www.digitalmenu.com/">
-                <b-form-input v-model.trim="user.companySlug" :disabled="!customSlug"></b-form-input>
+                <b-form-input v-model.trim="company.slug" :disabled="!customSlug"></b-form-input>
               </b-input-group>
             </b-form-group>
-            <b-btn type="submit" variant="landing-secondary" class="mt-4">Kaydet</b-btn>
+            <b-btn type="submit" variant="landing-secondary" class="mt-4">Şirket Bilgilerini Güncelle</b-btn>
           </b-tab>
         </form>
-        <b-tab title="Parola" title-link-class="text-secondary">
-          <form class="my-5" @submit="submitPasswordForm">
+        <form class="my-5" @submit.prevent="submitPasswordForm">
+          <b-tab title="Parola" title-link-class="text-secondary">
             <b-form-group label="Eski Parola">
               <b-input type="password" v-model.trim="passwordCredentials.oldPassword" />
             </b-form-group>
@@ -59,8 +60,8 @@
               <b-input type="password" v-model.trim="newPasswordConfirm" :disabled="passwordCredentials.oldPassword == ''" />
             </b-form-group>
             <b-btn type="submit" variant="landing-secondary" class="mt-4">Parolayı Güncelle</b-btn>
-          </form>
-        </b-tab>
+          </b-tab>
+        </form>
       </b-tabs>
     </b-card>
   </div>
@@ -72,8 +73,10 @@ import { emailRegex } from "@/helper/constants";
 export default {
   data() {
     return {
-      user: {
-        companyImageFile: null,
+      user: {},
+      company: {
+        name: "",
+        slug: "",
       },
       passwordCredentials: {
         oldPassword: "",
@@ -83,16 +86,17 @@ export default {
       customSlug: false,
       validationErrors: [],
       imageUrl: "",
+      imageFile: new FormData(),
     };
   },
   methods: {
     updateCompanySlug() {
       if (!this.customSlug) {
-        this.user.companySlug = this.user.companyName.toLowerCase().replaceAll("ü", "u").replaceAll("ı", "i").replaceAll("ğ", "g").replaceAll("ş", "s").replaceAll("ö", "o").replaceAll(" ", "-").replaceAll(".", "-");
+        this.company.slug = this.company.name.toLowerCase().replaceAll("ü", "u").replaceAll("ı", "i").replaceAll("ğ", "g").replaceAll("ş", "s").replaceAll("ö", "o").replaceAll(" ", "-").replaceAll(".", "-");
       }
     },
+
     async submitAccountForm() {
-      console.log(this.user.companyImageFile);
       if (this.valiteAccountForm()) {
         var data = await accountService.updateProfile(this.user);
         if (data.code === 200) {
@@ -106,8 +110,6 @@ export default {
           this.$store.dispatch("setToken", data.data.token);
           this.$store.dispatch("setUser", data.data.user);
         }
-
-        this.validationErrors = [];
       } else {
         this.validationErrors.map((error) => {
           this.$notify({
@@ -117,12 +119,24 @@ export default {
             type: "error",
           });
         });
+
+        this.validationErrors = [];
       }
     },
 
-    async submitPasswordForm(event) {
-      event.preventDefault();
+    async submitCompanyForm() {
+      var data = await accountService.updateCompany(this.user.userId, this.company);
+      this.company = data.data;
 
+      this.$notify({
+        group: "notify-top-right",
+        text: "Şirket bilgileri başarıyla güncellendi.",
+        duration: 5000,
+        type: "success",
+      });
+    },
+
+    async submitPasswordForm() {
       if (this.validatePasswordForm()) {
         var data = await accountService.updatePassword(this.$store.state.user.userId, this.passwordCredentials);
         if (data.code === 200) {
@@ -160,10 +174,6 @@ export default {
       }
     },
 
-    imagePreview(event) {
-      this.imageUrl = URL.createObjectURL(event);
-    },
-
     valiteAccountForm() {
       if (this.user.username === "" || this.user.username === undefined || this.user.username === null) this.validationErrors.push(this.$t("messages.error.usernameRequiredError"));
       else if (this.user.username.length > 16) this.validationErrors.push(this.$t("messages.error.usernameMaxLengthError"));
@@ -189,11 +199,19 @@ export default {
       if (this.validationErrors.length > 0) return false;
       return true;
     },
+
+    imagePreview(event) {
+      this.user.companyImageFile = event;
+    },
   },
 
-  mounted() {
+  async mounted() {
     this.user = this.$store.state.user;
     this.imageUrl = this.$store.state.user.companyImageName;
+    var companyData = await accountService.getCompany(this.user.userId);
+    if (companyData.code === 200) {
+      this.company = companyData.data;
+    }
   },
 };
 </script>

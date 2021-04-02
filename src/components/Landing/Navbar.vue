@@ -53,7 +53,7 @@ export default {
       this.$store.dispatch("setUser", null);
       this.$store.dispatch("setToken", null);
       await authService.logout(userId);
-      this.$router.push("/");
+      this.isUserLoggedIn = false;
     },
     handleLanguageChange() {
       this.$emit("changePricingLang");

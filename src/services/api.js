@@ -34,6 +34,8 @@ api.interceptors.response.use(
           store.dispatch("setUser", response.data.data.user);
         })
         .catch(() => {
+          store.dispatch("setToken", null);
+          store.dispatch("setUser", null);
           router.push("/login");
         });
     }
