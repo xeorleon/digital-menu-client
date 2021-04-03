@@ -13,7 +13,12 @@ import "@/styles/variables.css";
 import "@/styles/styles.css";
 import i18n from "./i18n";
 import VueCookie from "vue-cookie";
-import authService from "@/services/authService";
+// import { library } from "@fortawesome/fontawesome-svg-core";
+// import { faHome } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+// library.add(faHome);
+// Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
