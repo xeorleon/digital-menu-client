@@ -1,11 +1,12 @@
 <template>
-  <sidebar-menu :menu="sidenavOptions.menu" :relative="sidenavOptions.isRelative" :width="sidenavOptions.width" :hideToggle="sidenavOptions.hideToggle" :collapsed="sidenavOptions.collapsed" />
+  <sidebar-menu :menu="sidenavOptions.menu" :relative="false" :width="sidenavOptions.width" :hideToggle="sidenavOptions.hideToggle" :collapsed="sidenavOptions.collapsed" />
 </template>
 
 <script>
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import { SidebarMenu } from "vue-sidebar-menu";
 import authService from "@/services/authService";
+import "@fortawesome/fontawesome-free/css/all.min.css"
 export default {
   components: {
     SidebarMenu,
@@ -23,6 +24,21 @@ export default {
             href: "/dashboard",
             title: "Anasayfa",
             icon: "lnr lnr-home",
+          },
+          {
+            href: "/products",
+            title: "Ürünler",
+            icon: "fas fa-utensils",
+          },
+          {
+            href: "/categories",
+            title: "Kategoriler",
+            icon: "fas fa-layer-group",
+          },
+          {
+            href: "/qr",
+            title: "QR Kod",
+            icon: "fas fa-qrcode",
           },
           {
             href: "/account",

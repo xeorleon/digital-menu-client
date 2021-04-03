@@ -2,8 +2,8 @@
   <div>
     <b-card no-body>
       <b-tabs card>
-        <form class="my-5" @submit.prevent="submitAccountForm">
-          <b-tab title="Hesap" title-link-class="text-secondary" active>
+        <b-tab title="Hesap" title-link-class="text-secondary" active>
+          <form class="my-5 px-3" @submit.prevent="submitAccountForm">
             <b-form-group :label="this.$t('username')">
               <b-input v-model.trim="user.username" />
             </b-form-group>
@@ -20,10 +20,10 @@
               <b-input v-model.trim="user.phoneNumber" />
             </b-form-group>
             <b-btn type="submit" variant="landing-secondary" class="mt-4">Hesap Bilgilerini Güncelle</b-btn>
-          </b-tab>
-        </form>
-        <form class="my-5" @submit.prevent="submitCompanyForm" enctype="multipart/form-data">
-          <b-tab title="İşletme" title-link-class="text-secondary">
+          </form>
+        </b-tab>
+        <b-tab title="İşletme" title-link-class="text-secondary">
+          <form class="my-5 px-3" @submit.prevent="submitCompanyForm" enctype="multipart/form-data">
             <b-row>
               <b-col cols="12" sm="6">
                 <b-form-group label="Logo">
@@ -46,10 +46,10 @@
               </b-input-group>
             </b-form-group>
             <b-btn type="submit" variant="landing-secondary" class="mt-4">Şirket Bilgilerini Güncelle</b-btn>
-          </b-tab>
-        </form>
-        <form class="my-5" @submit.prevent="submitPasswordForm">
-          <b-tab title="Parola" title-link-class="text-secondary">
+          </form>
+        </b-tab>
+        <b-tab title="Parola" title-link-class="text-secondary">
+          <form class="px-3 my-5" @submit.prevent="submitPasswordForm">
             <b-form-group label="Eski Parola">
               <b-input type="password" v-model.trim="passwordCredentials.oldPassword" />
             </b-form-group>
@@ -60,8 +60,8 @@
               <b-input type="password" v-model.trim="newPasswordConfirm" :disabled="passwordCredentials.oldPassword == ''" />
             </b-form-group>
             <b-btn type="submit" variant="landing-secondary" class="mt-4">Parolayı Güncelle</b-btn>
-          </b-tab>
-        </form>
+          </form>
+        </b-tab>
       </b-tabs>
     </b-card>
   </div>
