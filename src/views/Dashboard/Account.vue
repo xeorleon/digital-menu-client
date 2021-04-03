@@ -22,7 +22,7 @@
             <b-btn type="submit" variant="landing-secondary" class="mt-4">Hesap Bilgilerini Güncelle</b-btn>
           </b-tab>
         </form>
-        <form class="my-5" @submit.prevent="submitCompanyForm">
+        <form class="my-5" @submit.prevent="submitCompanyForm" enctype="multipart/form-data">
           <b-tab title="İşletme" title-link-class="text-secondary">
             <b-row>
               <b-col cols="12" sm="6">
@@ -42,7 +42,7 @@
             </b-form-group>
             <b-form-group label="Menü Linki (Bu alanı değiştirseniz QR kodunuzu da yenilemeniz gerekmektedir.)">
               <b-input-group prepend="https://www.digitalmenu.com/">
-                <b-form-input v-model.trim="company.slug" :disabled="!customSlug"></b-form-input>
+                <b-form-input v-model.trim="company.slug" :disabled="!customSlug" />
               </b-input-group>
             </b-form-group>
             <b-btn type="submit" variant="landing-secondary" class="mt-4">Şirket Bilgilerini Güncelle</b-btn>
@@ -82,11 +82,11 @@ export default {
         oldPassword: "",
         newPassword: "",
       },
+      companyModel: new FormData(),
       newPasswordConfirm: "",
       customSlug: false,
       validationErrors: [],
       imageUrl: "",
-      imageFile: new FormData(),
     };
   },
   methods: {
@@ -125,15 +125,22 @@ export default {
     },
 
     async submitCompanyForm() {
-      var data = await accountService.updateCompany(this.user.userId, this.company);
-      this.company = data.data;
+      this.companyModel.append("name", this.company.name);
+      this.companyModel.append("slug", this.company.slug);
+      const data = await accountService.updateCompany(this.user.userId, this.companyModel);
 
-      this.$notify({
-        group: "notify-top-right",
-        text: "Şirket bilgileri başarıyla güncellendi.",
-        duration: 5000,
-        type: "success",
-      });
+      if (data.code === 200) {
+        this.company = data.data;
+
+        this.$notify({
+          group: "notify-top-right",
+          text: "Şirket bilgileri başarıyla güncellendi.",
+          duration: 5000,
+          type: "success",
+        });
+
+        this.companyModel = new FormData();
+      }
     },
 
     async submitPasswordForm() {
@@ -201,16 +208,18 @@ export default {
     },
 
     imagePreview(event) {
-      this.user.companyImageFile = event;
+      const fileExtension = event.name.split(".")[1];
+      this.companyModel.append("logoFile", event, this.user.userId + "." + fileExtension);
+      this.imageUrl = URL.createObjectURL(event);
     },
   },
 
   async mounted() {
     this.user = this.$store.state.user;
-    this.imageUrl = this.$store.state.user.companyImageName;
-    var companyData = await accountService.getCompany(this.user.userId);
+    const companyData = await accountService.getCompany(this.user.userId);
     if (companyData.code === 200) {
       this.company = companyData.data;
+      if (companyData.data.logoName) this.imageUrl = companyData.data.logoName;
     }
   },
 };
