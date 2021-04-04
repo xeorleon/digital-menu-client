@@ -1,20 +1,20 @@
-import api from "./api";
+import client from "./httpClient";
 
 export default {
   async updateProfile(user) {
-    var response = await api.put(`/user/${user.userId}/update`, user);
+    const response = await client.put(`/user/${user.userId}/update`, user);
     return response.data;
   },
   async updatePassword(userId, credentials) {
-    var response = await api.put(`/user/${userId}/update-password`, credentials);
+    const response = await client.put(`/user/${userId}/update-password`, credentials);
     return response.data;
   },
   async getCompany(userId) {
-    var response = await api.get(`/user/${userId}/company`);
+    const response = await client.get(`/user/${userId}/company`);
     return response.data;
   },
   async updateCompany(userId, company) {
-    var response = await api.post(`/user/${userId}/company`, company);
+    const response = await client.post(`/user/${userId}/company`, company);
     return response.data;
   },
 };

@@ -3,12 +3,12 @@ import store from "@/store/index";
 import router from "@/router/index";
 import cookie from "vue-cookie";
 
-const api = axios.create({
+const httpClient = axios.create({
   baseURL: "https://localhost:5001",
   withCredentials: true,
 });
 
-api.interceptors.request.use(
+httpClient.interceptors.request.use(
   (config) => {
     if (store.state.token) config.headers["Authorization"] = `Bearer ${store.state.token}`;
     if (cookie.get("lang")) config.headers["X-Language"] = cookie.get("lang").toLowerCase();
@@ -21,13 +21,13 @@ api.interceptors.request.use(
   }
 );
 
-api.interceptors.response.use(
+httpClient.interceptors.response.use(
   (success) => {
     return success;
   },
   (error) => {
     if (error.response.status === 401 && router.currentRoute.name !== "Login") {
-      api
+      httpClient
         .get("/user/refresh-token")
         .then((response) => {
           store.dispatch("setToken", response.data.data.token);
@@ -44,4 +44,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default httpClient;
