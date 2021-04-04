@@ -28,8 +28,7 @@ const routes = [
   },
   {
     path: "/dashboard",
-    component: Layout, // dashboardın layout'unu belirtiyoruz ve layout içinde router view diyip gönderdigimiz viewları
-    //Layoutun içinde gösteriyoruz.
+    component: Layout,
     children: [
       {
         path: "/",
@@ -37,12 +36,12 @@ const routes = [
       },
       {
         path: "/account",
-        component: () => import(/* webpackChunkName: "account" */ "@/views/Dashboard/Account.vue")
+        component: () => import(/* webpackChunkName: "account" */ "@/views/Dashboard/Account.vue"),
       },
       {
         path: "/categories",
-        component: () => import(/* webpackChunkName: "categories" */ "@/views/Dashboard/Categories.vue")
-      }
+        component: () => import(/* webpackChunkName: "categories" */ "@/views/Dashboard/Categories.vue"),
+      },
     ],
   },
 ];

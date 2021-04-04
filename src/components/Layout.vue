@@ -15,6 +15,10 @@ export default {
     Sidenav,
     LayoutContainer,
   },
+
+  mounted() {
+    if (!this.$store.state.isUserLoggedIn) this.$router.push("/login");
+  },
 };
 </script>
 

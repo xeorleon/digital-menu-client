@@ -1,10 +1,11 @@
 <template>
-  <i class="fas fa home"></i>
+  <div>categories</div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$title = "Categories";
+  },
+};
 </script>
-
-<style>
-</style>
