@@ -136,6 +136,10 @@ a.text-landing-primary:hover {
   display: block;
 }
 
+.image-preview {
+  max-height: 75px;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .authentication-wrapper::after {
     content: "";
