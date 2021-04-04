@@ -13,5 +13,3 @@ export default {
   components: { PageLoader },
 };
 </script>
-
-<style></style>

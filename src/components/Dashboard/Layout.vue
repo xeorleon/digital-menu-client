@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Sidenav from "./Dashboard/Sidenav.vue";
+import Sidenav from "./Sidenav.vue";
 import LayoutContainer from "./LayoutContainer.vue";
 export default {
   components: {

@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Landing from "../views/Landing.vue";
 import Dashboard from "../views/Dashboard/Dashboard.vue";
-import Layout from "../components/Layout";
+import Layout from "../components/Dashboard/Layout.vue";
 Vue.use(VueRouter);
 
 const routes = [
