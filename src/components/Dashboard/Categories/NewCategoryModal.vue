@@ -42,6 +42,7 @@ export default {
 
         const data = await categoryService.insertCategory(this.$store.state.user.userId, this.categoryModel);
         if (data.code === 200) {
+          this.$emit("category-saved");
           this.$notify({
             group: "notify-top-right",
             text: "Kategori başarıyla kaydedildi.",
@@ -49,11 +50,13 @@ export default {
             type: "success",
           });
 
+          this.$bvModal.hide("new-category");
+
           this.category = {
             name_tr: "",
             name_en: "",
           };
-          
+
           this.categoryModel = new FormData();
           this.imageUrl = "";
         }
