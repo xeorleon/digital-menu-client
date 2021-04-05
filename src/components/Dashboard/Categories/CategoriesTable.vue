@@ -4,23 +4,22 @@
       <template #cell(nameTR)="row">{{ row.value }}</template>
       <template #cell(nameEN)="row">{{ row.value }}</template>
       <template #cell(actions)="row">
-        <b-button v-b-modal.category-details size="sm" variant="info" class="mr-1">Düzenle</b-button>
+        <category-details-button v-on:categorySaved="refreshCategories" :category="row.item" />
         <b-button size="sm" variant="danger" @click="deleteCategory(row.item)" class="mr-1">Sil</b-button>
       </template>
     </b-table>
     <b-alert variant="warning" show v-else>Henüz kategori eklemediniz.</b-alert>
-    <category-details-modal />
     <new-category-modal v-on:category-saved="refreshCategories" />
   </div>
 </template>
 
 <script>
-import CategoryDetailsModal from "../../Dashboard/Categories/CategoryDetailsModal";
-import categoriesService from "@/services/categoryService";
+import categoryService from "@/services/categoryService";
 import NewCategoryModal from "@/components/Dashboard/Categories/NewCategoryModal.vue";
+import CategoryDetailsButton from "@/components/Dashboard/Categories/CategoryDetailsButton.vue";
 
 export default {
-  components: { CategoryDetailsModal, NewCategoryModal },
+  components: { NewCategoryModal, CategoryDetailsButton },
   data() {
     return {
       items: [],
@@ -60,7 +59,7 @@ export default {
     },
 
     async fetchCategories() {
-      const categoryData = await categoriesService.getAllCategories(this.$store.state.user.userId);
+      const categoryData = await categoryService.getAllCategories(this.$store.state.user.userId);
       if (categoryData.code === 200) {
         this.items = categoryData.data;
       }

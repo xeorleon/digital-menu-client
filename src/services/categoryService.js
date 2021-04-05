@@ -9,4 +9,8 @@ export default {
     const response = await client.get(`/category/${userId}`);
     return response.data;
   },
+  async updateCategory(userId, category) {
+    const response = await client.put(`/category/${userId}/update`, category);
+    return response.data;
+  },
 };

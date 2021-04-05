@@ -50,15 +50,13 @@ export default {
             type: "success",
           });
 
-          this.$bvModal.hide("new-category");
-
           this.category = {
             name_tr: "",
             name_en: "",
           };
-
           this.categoryModel = new FormData();
           this.imageUrl = "";
+          this.$bvModal.hide("new-category");
         }
       }
     },
