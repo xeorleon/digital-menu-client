@@ -46,10 +46,21 @@ export default {
           okVariant: "danger",
           okTitle: "EVET",
           cancelTitle: "HAYIR",
+          cancelVariant: "dark"
         })
-        .then((value) => {
+        .then(async (value) => {
           if (value) {
-            // category silme işlemleri
+            const response = await categoryService.deleteCategory(this.$store.state.user.userId, category.id);
+            if (response.code === 200) {
+              this.$notify({
+                group: "notify-top-right",
+                text: "Kategori başarıyla silindi.",
+                duration: 5000,
+                type: "info",
+              });
+
+              this.refreshCategories();
+            }
           }
         });
     },

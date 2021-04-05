@@ -13,4 +13,8 @@ export default {
     const response = await client.put(`/category/${userId}/update`, category);
     return response.data;
   },
+  async deleteCategory(userId, categoryId) {
+    const response = await client.delete(`/category/${userId}/${categoryId}`);
+    return response.data;
+  },
 };
