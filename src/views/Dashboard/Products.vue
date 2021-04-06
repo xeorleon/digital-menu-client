@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <b-col cols="12">
-        <b-button v-b-modal.new-produt variant="landing-secondary">Yeni Ürün</b-button>
+        <b-button v-b-modal.new-product variant="landing-secondary">Yeni Ürün</b-button>
       </b-col>
     </b-row>
     <b-row class="mt-4">

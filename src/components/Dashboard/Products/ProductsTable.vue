@@ -8,13 +8,15 @@
         <b-button size="sm" variant="danger" @click="deleteCategory(row.item)" class="mr-1">Sil</b-button>
       </template>
     </b-table>
-    <b-alert variant="warning" show v-else>Henüz kategori eklemediniz.</b-alert>
-    <!-- <new-category-modal v-on:category-saved="refreshCategories" /> -->
+    <b-alert variant="warning" show v-else>Henüz ürün eklemediniz.</b-alert>
+    <new-product-modal />
   </div>
 </template>
 
 <script>
+import NewProductModal from "@/components/Dashboard/Products/NewProductModal.vue";
 export default {
+  components: { NewProductModal },
   data() {
     return {
       products: [],
