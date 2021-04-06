@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table :items="items" :fields="fields" thead-class="table-header" bordered hover head-variant="dark" v-if="items.length > 0">
+    <b-table :items="categories" :fields="fields" thead-class="table-header" bordered hover head-variant="dark" v-if="categories.length > 0">
       <template #cell(nameTR)="row">{{ row.value }}</template>
       <template #cell(nameEN)="row">{{ row.value }}</template>
       <template #cell(actions)="row">
@@ -22,7 +22,7 @@ export default {
   components: { NewCategoryModal, CategoryDetailsButton },
   data() {
     return {
-      items: [],
+      categories: [],
       fields: [
         { key: "nameTR", label: "Kategori Adı (TR)", sortable: true },
         { key: "nameEN", label: "Kategori Adı (EN)", sortable: true },
@@ -72,7 +72,7 @@ export default {
     async fetchCategories() {
       const categoryData = await categoryService.getAllCategories(this.$store.state.user.userId);
       if (categoryData.code === 200) {
-        this.items = categoryData.data;
+        this.categories = categoryData.data;
       }
     },
   },
