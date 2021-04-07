@@ -1,0 +1,20 @@
+<template>
+  <div class="d-inline">
+    <b-button v-b-modal="this.product.id" size="sm" variant="info" class="mr-1">Düzenle</b-button>
+    <product-details-modal v-on:productSaved="handleProductSave" :product="this.product"/>
+  </div>
+</template>
+
+<script>
+import ProductDetailsModal from "./ProductDetailsModal.vue";
+export default {
+  components: { ProductDetailsModal },
+  props: ["product"],
+
+  methods: {
+    handleProductSave() {
+      this.$emit("productSaved");
+    },
+  },
+};
+</script>

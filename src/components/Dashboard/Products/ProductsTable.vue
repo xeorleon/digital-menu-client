@@ -5,20 +5,21 @@
       <template #cell(nameEN)="row">{{ row.value }}</template>
       <template #cell(price)="row">{{ row.value }}</template>
       <template #cell(actions)="row">
-        <!-- <category-details-button v-on:categorySaved="refreshCategories" :category="row.item" /> -->
+        <product-details-button v-on:productSaved="refreshProducts" :product="row.item" />
         <b-button size="sm" variant="danger" @click="deleteProduct(row.item)" class="mr-1">Sil</b-button>
       </template>
     </b-table>
     <b-alert variant="warning" show v-else>Henüz ürün eklemediniz.</b-alert>
-    <new-product-modal v-on:product-saved="refreshProducts" />
+    <new-product-modal v-on:productSaved="refreshProducts" />
   </div>
 </template>
 
 <script>
 import NewProductModal from "@/components/Dashboard/Products/NewProductModal.vue";
+import ProductDetailsButton from "@/components/Dashboard/Products/ProductDetailsButton.vue";
 import productService from "@/services/productService";
 export default {
-  components: { NewProductModal },
+  components: { NewProductModal, ProductDetailsButton },
   data() {
     return {
       products: [],
@@ -32,20 +33,19 @@ export default {
   },
 
   async mounted() {
-    await this.fetchCategories();
+    await this.fetchProducts();
   },
 
   methods: {
-    async fetchCategories() {
+    async fetchProducts() {
       const data = await productService.getAllProducts(this.$store.state.user.userId);
       if (data.code === 200) {
-        console.log(data.data);
         this.products = data.data;
       }
     },
 
     async refreshProducts() {
-      await this.fetchCategories();
+      await this.fetchProducts();
     },
   },
 

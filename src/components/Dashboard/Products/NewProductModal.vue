@@ -78,7 +78,7 @@ export default {
 
         const data = await productService.insertProduct(this.$store.state.user.userId, this.productModel);
         if (data.code === 200) {
-          this.$emit("product-saved");
+          this.$emit("productSaved");
           this.$notify({
             group: "notify-top-right",
             text: "Ürün başarıyla kaydedildi.",
@@ -92,11 +92,18 @@ export default {
             descriptionTR: "",
             descriptionEN: "",
             price: 0.0,
-            categoryId: null
+            categoryId: null,
           };
           this.productModel = new FormData();
           this.imageUrl = "";
           this.$bvModal.hide("new-product");
+        } else if (data.code === 400) {
+          this.$notify({
+            group: "notify-top-right",
+            text: "Maksimum ürün sayısına ulaşıldı.",
+            duration: 5000,
+            type: "error",
+          });
         }
       } else {
         this.validationErrors.map((error) => {

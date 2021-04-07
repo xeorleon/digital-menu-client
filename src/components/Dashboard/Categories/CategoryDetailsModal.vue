@@ -44,7 +44,7 @@ export default {
       this.categoryModel.append("NameTR", this.categoryData.nameTR);
       this.categoryModel.append("NameEN", this.categoryData.nameEN);
       
-      var categoryData = await categoryService.updateCategory(this.$store.state.user.userId, this.categoryModel);
+      const categoryData = await categoryService.updateCategory(this.$store.state.user.userId, this.categoryModel);
       if (categoryData.code === 200) {
         this.$emit("categorySaved");
         this.$notify({

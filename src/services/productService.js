@@ -9,4 +9,8 @@ export default {
     const response = await client.get(`/product/${userId}`);
     return response.data;
   },
+  async updateProduct(userId, product) {
+    const response = await client.put(`/product/${userId}/update`, product);
+    return response.data;
+  },
 };
