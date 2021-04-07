@@ -47,8 +47,35 @@ export default {
     async refreshProducts() {
       await this.fetchProducts();
     },
-  },
 
-  deleteProduct(product) {},
+    async deleteProduct(product) {
+      this.$bvModal
+        .msgBoxConfirm("Bu ürün silinecektir.", {
+          title: "Emin misiniz?",
+          centered: true,
+          size: "sm",
+          buttonSize: "sm",
+          okVariant: "danger",
+          okTitle: "EVET",
+          cancelTitle: "HAYIR",
+          cancelVariant: "dark",
+        })
+        .then(async (value) => {
+          if (value) {
+            const response = await productService.deleteProduct(this.$store.state.user.userId, product.id);
+            if (response.code === 200) {
+              this.$notify({
+                group: "notify-top-right",
+                text: "Ürün başarıyla silindi.",
+                duration: 5000,
+                type: "info",
+              });
+
+              this.refreshProducts();
+            }
+          }
+        });
+    },
+  },
 };
 </script>

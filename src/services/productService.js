@@ -13,4 +13,8 @@ export default {
     const response = await client.put(`/product/${userId}/update`, product);
     return response.data;
   },
+  async deleteProduct(userId, productId) {
+    const response = await client.delete(`/product/${userId}/${productId}`);
+    return response.data;
+  },
 };
