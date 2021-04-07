@@ -140,6 +140,25 @@ a.text-landing-primary:hover {
   max-height: 75px;
 }
 
+.dashboard-table .options-column {
+  width: 20%;
+  text-align: center;
+}
+
+.dashboard-table .table-header tr {
+  border-color: var(--color-landing-secondary) !important;
+}
+
+.dashboard-table .table-header tr th {
+  background-color: var(--color-landing-secondary) !important;
+  color: var(--color-white);
+  border-color: var(--color-landing-secondary) !important;
+}
+
+.dashboard-table .table-header tr th:focus {
+  outline-color: var(--color-landing-secondary) !important;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .authentication-wrapper::after {
     content: "";

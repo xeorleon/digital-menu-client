@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table :items="categories" :fields="fields" thead-class="table-header" bordered hover head-variant="dark" v-if="categories.length > 0">
+    <b-table :items="categories" :fields="fields" thead-class="table-header" bordered hover head-variant="dark" v-if="categories.length > 0" class="dashboard-table">
       <template #cell(nameTR)="row">{{ row.value }}</template>
       <template #cell(nameEN)="row">{{ row.value }}</template>
       <template #cell(actions)="row">
@@ -46,7 +46,7 @@ export default {
           okVariant: "danger",
           okTitle: "EVET",
           cancelTitle: "HAYIR",
-          cancelVariant: "dark"
+          cancelVariant: "dark",
         })
         .then(async (value) => {
           if (value) {
@@ -78,24 +78,3 @@ export default {
   },
 };
 </script>
-
-<style >
-.options-column {
-  width: 20%;
-  text-align: center;
-}
-
-.table-header tr {
-  border-color: var(--color-landing-secondary) !important;
-}
-
-.table-header tr th {
-  background-color: var(--color-landing-secondary) !important;
-  color: var(--color-white);
-  border-color: var(--color-landing-secondary) !important;
-}
-
-.table-header tr th:focus {
-  outline-color: var(--color-landing-secondary) !important;
-}
-</style>

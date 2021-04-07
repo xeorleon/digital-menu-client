@@ -92,6 +92,7 @@ export default {
             descriptionTR: "",
             descriptionEN: "",
             price: 0.0,
+            categoryId: null
           };
           this.productModel = new FormData();
           this.imageUrl = "";
