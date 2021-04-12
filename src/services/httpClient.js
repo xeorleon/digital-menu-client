@@ -22,22 +22,17 @@ httpClient.interceptors.request.use(
 );
 
 httpClient.interceptors.response.use(
-  (success) => {
-    return success;
+  (response) => {
+    if (response.headers["x-new-jwt-token"]) {
+      store.dispatch("setToken", response.headers["x-new-jwt-token"]);
+    }
+    return response;
   },
   (error) => {
-    if (error.response.status === 401 && router.currentRoute.name !== "Login") {
-      httpClient
-        .get("/user/refresh-token")
-        .then((response) => {
-          store.dispatch("setToken", response.data.data.token);
-          store.dispatch("setUser", response.data.data.user);
-        })
-        .catch(() => {
-          store.dispatch("setToken", null);
-          store.dispatch("setUser", null);
-          router.push("/login");
-        });
+    if (error.response.status === 401) {
+      store.dispatch("setToken", null);
+      store.dispatch("setUser", null);
+      if (router.currentRoute.name !== "Login") router.push("/login");
     }
 
     return error.response;
