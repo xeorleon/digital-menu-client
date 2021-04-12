@@ -5,7 +5,7 @@
       <template #cell(nameEN)="row">{{ row.value }}</template>
       <template #cell(price)="row">{{ row.value }}</template>
       <template #cell(actions)="row">
-        <product-details-button v-on:productSaved="refreshProducts" :product="row.item" />
+        <product-details-button v-on:productUpdated="refreshProducts" :product="row.item" />
         <b-button size="sm" variant="danger" @click="deleteProduct(row.item)" class="mr-1">Sil</b-button>
       </template>
     </b-table>
@@ -40,6 +40,7 @@ export default {
     async fetchProducts() {
       const data = await productService.getAllProducts(this.$store.state.user.userId);
       if (data.code === 200) {
+        this.products = null;
         this.products = data.data;
       }
     },

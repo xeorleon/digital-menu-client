@@ -35,7 +35,6 @@ export default {
         slug: "",
       },
       customSlug: false,
-      validationErrors: [],
       imageUrl: "",
       companyModel: new FormData(),
     };

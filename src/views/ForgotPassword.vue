@@ -5,10 +5,10 @@
         <div class="p-4 p-sm-5">
           <div class="display-1 lnr lnr-checkmark-circle text-center text-landing-primary mb-4"></div>
           <p class="text-center text-big mb-4">{{ $t("forgotPasswordView.emailSentMessage") }}</p>
-          <b-link to="/" class="btn btn-landing-primary btn-block">{{$t("forgotPasswordView.backToHomepageButtonText")}}</b-link>
+          <b-link to="/" class="btn btn-landing-primary btn-block">{{ $t("forgotPasswordView.backToHomepageButtonText") }}</b-link>
         </div>
       </b-card>
-      <form class="card" @submit="forgotPassword" v-else>
+      <form class="card" @submit.prevent="forgotPassword" v-else>
         <div class="p-4 p-sm-5">
           <!-- Logo -->
           <div class="d-flex justify-content-center align-items-center pb-2 mb-4">
@@ -21,8 +21,8 @@
           <h5 class="text-center text-muted font-weight-normal mb-4">{{ $t("forgotPasswordView.formTitle") }}</h5>
           <hr class="mt-0 mb-4" />
           <p>{{ $t("forgotPasswordView.formDescription") }}</p>
-          <b-form-group>
-            <b-input v-model="credentials.emailAddress" :placeholder="this.$t('forgotPasswordView.inputPlaceholder')" />
+          <b-form-group :state="validateEmailAddress()" :invalid-feedback="!$v.credentials.emailAddress.required ? $t('messages.error.emailRequiredError') : !$v.credentials.emailAddress.email ? $t('messages.error.emailWrongFormatError') : ''">
+            <b-input v-model="credentials.emailAddress" :placeholder="this.$t('forgotPasswordView.inputPlaceholder')" :state="validateEmailAddress()" />
           </b-form-group>
           <b-btn type="submit" variant="landing-primary" :block="true">{{ $t("forgotPasswordView.sendEmailButtonText") }}</b-btn>
         </div>
@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import { emailRegex } from "@/helper/constants";
 import authService from "@/services/authService";
+import { required, email } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -44,40 +44,31 @@ export default {
     };
   },
 
+  validations: {
+    credentials: {
+      emailAddress: {
+        required,
+        email,
+      },
+    },
+  },
+
   mounted() {
     this.$title = this.$t("forgotPasswordView.tabTitle");
   },
 
   methods: {
-    async forgotPassword(event) {
-      event.preventDefault();
-
-      if (this.validateForm()) {
-        await authService.forgotPassword(this.credentials);
+    async forgotPassword() {
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
         this.emailSent = true;
+        await authService.forgotPassword(this.credentials);
       }
     },
 
-    validateForm() {
-      if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) {
-        this.$notify({
-          group: "notify",
-          text: this.$t("messages.error.emailRequiredError"),
-          duration: 5000,
-          type: "error",
-        });
-        return false;
-      } else if (!emailRegex.test(this.credentials.emailAddress)) {
-        this.$notify({
-          group: "notify",
-          text: this.$t("messages.error.emailWrongFormatError"),
-          duration: 5000,
-          type: "error",
-        });
-        return false;
-      }
-
-      return true;
+    validateEmailAddress() {
+      const { $dirty, $error } = this.$v.credentials.emailAddress;
+      return $dirty ? !$error : null;
     },
   },
 };

@@ -1,11 +1,15 @@
 <template>
   <b-modal :id="this.categoryData.id" title="Detaylar" scrollable hide-footer>
     <form @submit.prevent="updateCategory" class="px-3" enctype="multipart/form-data">
-      <b-form-group label="Kategori Adı (TR)">
-        <b-input v-model="categoryData.nameTR" />
+      <b-form-group
+        label="Kategori Adı (TR)"
+        :state="validateState('nameTR')"
+        :invalid-feedback="!$v.categoryData.nameTR.required ? 'Türkçe varsayılan dil olduğu için zorunludur.' : !$v.categoryData.nameTR.maxLength ? 'Kategori adı 50 karakterden uzun olamaz.' : ''"
+      >
+        <b-input v-model="categoryData.nameTR" :state="validateState('nameTR')" />
       </b-form-group>
-      <b-form-group label="Kategori Adı (EN)">
-        <b-input v-model="categoryData.nameEN" />
+      <b-form-group label="Kategori Adı (EN)" :state="!categoryData.nameEN ? null : validateState('nameEN')" :invalid-feedback="!$v.categoryData.nameEN.maxLength ? 'Kategori adı 50 karakterden uzun olamaz.' : ''">
+        <b-input v-model="categoryData.nameEN" :state="!categoryData.nameEN ? null : validateState('nameEN')" />
       </b-form-group>
       <b-form-group label="Kategori Görseli">
         <b-form-file @input="imagePreview" placeholder="Dosya Seç veya Sürükle" drop-placeholder="Buraya Bırak" accept="image/*" />
@@ -21,6 +25,7 @@
 
 <script>
 import categoryService from "@/services/categoryService";
+import { required, maxLength } from "vuelidate/lib/validators";
 
 export default {
   props: ["category"],
@@ -38,28 +43,50 @@ export default {
     };
   },
 
+  validations: {
+    categoryData: {
+      nameTR: {
+        required,
+        maxLength: maxLength(50),
+      },
+      nameEN: {
+        maxLength: maxLength(50),
+      },
+    },
+  },
+
   methods: {
     async updateCategory() {
-      this.categoryModel.append("Id", this.categoryData.id);
-      this.categoryModel.append("NameTR", this.categoryData.nameTR);
-      this.categoryModel.append("NameEN", this.categoryData.nameEN);
-      
-      const categoryData = await categoryService.updateCategory(this.$store.state.user.userId, this.categoryModel);
-      if (categoryData.code === 200) {
-        this.$emit("categorySaved");
-        this.$notify({
-          group: "notify-top-right",
-          text: "Kategori başarıyla güncellendi.",
-          duration: 5000,
-          type: "success",
-        });
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        this.categoryModel.append("Id", this.categoryData.id);
+        this.categoryModel.append("NameTR", this.categoryData.nameTR);
+        this.categoryModel.append("NameEN", this.categoryData.nameEN);
 
-        this.categoryModel = new FormData();
-        this.closeModal();
+        const categoryData = await categoryService.updateCategory(this.$store.state.user.userId, this.categoryModel);
+        if (categoryData.code === 200) {
+          this.$emit("categorySaved");
+          this.$notify({
+            group: "notify-top-right",
+            text: "Kategori başarıyla güncellendi.",
+            duration: 5000,
+            type: "success",
+          });
+
+          this.categoryModel = new FormData();
+          this.closeModal();
+        }
       }
     },
 
+    validateState(name) {
+      const { $dirty, $error } = this.$v.categoryData[name];
+      return $dirty ? !$error : null;
+    },
+
     closeModal() {
+      this.categoryModel = new FormData();
+      this.$v.$reset();
       this.$bvModal.hide(this.category.id);
     },
 

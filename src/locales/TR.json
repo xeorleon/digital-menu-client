@@ -103,11 +103,12 @@
       "emailRequiredError": "E-posta alanı boş bırakılamaz.",
       "emailWrongFormatError": "Lütfen geçerli bir e-posta giriniz.",
       "passwordRequiredError": "Parola alanı boş bırakılamaz.",
-      "passwordLengthError": "Parola 6-16 karakter uzunluğunda olmalıdır.",
+      "passwordLengthError": "Parola 6 karakterden uzun olmalıdır.",
       "passwordsDontMatchError": "Parolalar uyuşmuyor.",
-      "usernameMaxLengthError": "Kullanıcı adı 16 karakterden uzun olamaz.",
-      "firstNameMaxLengthError": "İsim 16 karakterden uzun olamaz.",
-      "lastNameMaxLengthError": "Soyisim 16 karakterden uzun olamaz."
+      "usernameMaxLengthError": "Kullanıcı adı 30 karakterden uzun olamaz.",
+      "firstNameMaxLengthError": "İsim 30 karakterden uzun olamaz.",
+      "lastNameMaxLengthError": "Soyisim 30 karakterden uzun olamaz.",
+      "passwordConfirmRequiredError": "Parola doğrulama alanı boş bırakılamaz."
     }
   }
 }

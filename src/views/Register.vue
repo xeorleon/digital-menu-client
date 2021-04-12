@@ -21,26 +21,50 @@
 
             <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">{{ $t("registerView.formTitle") }}</h4>
             <form class="my-5" @submit.prevent="register">
-              <b-form-group :label="this.$t('username')">
-                <b-input v-model.trim="credentials.username" />
+              <b-form-group
+                :label="this.$t('username')"
+                :state="validateState('username')"
+                :invalid-feedback="!$v.credentials.username.required ? $t('messages.error.usernameRequiredError') : !$v.credentials.username.maxLength ? $t('messages.error.usernameMaxLengthError') : ''"
+              >
+                <b-input v-model.trim="credentials.username" :state="validateState('username')" />
               </b-form-group>
-              <b-form-group :label="this.$t('firstName')">
-                <b-input v-model.trim="credentials.firstName" />
+              <b-form-group
+                :label="this.$t('firstName')"
+                :state="validateState('firstName')"
+                :invalid-feedback="!$v.credentials.firstName.required ? $t('messages.error.firstNameRequiredError') : !$v.credentials.firstName.maxLength ? $t('messages.error.firstNameMaxLengthError') : ''"
+              >
+                <b-input v-model.trim="credentials.firstName" :state="validateState('firstName')" />
               </b-form-group>
-              <b-form-group :label="this.$t('lastName')">
-                <b-input v-model.trim="credentials.lastName" />
+              <b-form-group
+                :label="this.$t('lastName')"
+                :state="validateState('lastName')"
+                :invalid-feedback="!$v.credentials.lastName.required ? $t('messages.error.lastNameRequiredError') : !$v.credentials.lastName.maxLength ? $t('messages.error.lastNameMaxLengthError') : ''"
+              >
+                <b-input v-model.trim="credentials.lastName" :state="validateState('lastName')" />
               </b-form-group>
-              <b-form-group :label="this.$t('emailAddress')">
-                <b-input v-model.trim="credentials.emailAddress" />
+              <b-form-group
+                :label="this.$t('emailAddress')"
+                :state="validateState('emailAddress')"
+                :invalid-feedback="!$v.credentials.emailAddress.required ? $t('messages.error.emailRequiredError') : !$v.credentials.emailAddress.email ? $t('messages.error.emailWrongFormatError') : ''"
+              >
+                <b-input v-model.trim="credentials.emailAddress" :state="validateState('emailAddress')" />
               </b-form-group>
               <b-form-group :label="this.$t('phoneNumber')">
                 <b-input v-model.trim="credentials.phoneNumber" />
               </b-form-group>
-              <b-form-group :label="this.$t('password')">
-                <b-input type="password" v-model.trim="credentials.password" />
+              <b-form-group
+                :label="this.$t('password')"
+                :state="validateState('password')"
+                :invalid-feedback="!$v.credentials.password.required ? $t('messages.error.passwordRequiredError') : !$v.credentials.password.minLength ? $t('messages.error.passwordLengthError') : ''"
+              >
+                <b-input type="password" v-model.trim="credentials.password" :state="validateState('password')" />
               </b-form-group>
-              <b-form-group :label="this.$t('passwordConfirm')">
-                <b-input type="password" v-model.trim="passwordConfirm" />
+              <b-form-group
+                :label="this.$t('passwordConfirm')"
+                :state="validatePasswordConfirm()"
+                :invalid-feedback="!$v.passwordConfirm.required ? $t('messages.error.passwordConfirmRequiredError') : !$v.passwordConfirm.sameAs ? $t('messages.error.passwordsDontMatchError') : ''"
+              >
+                <b-input type="password" v-model.trim="passwordConfirm" :state="validatePasswordConfirm()" />
               </b-form-group>
               <b-btn type="submit" variant="landing-primary" :block="true" class="mt-4">{{ $t("signup") }}</b-btn>
               <div class="custom-text-muted small mt-4">
@@ -60,8 +84,8 @@
 </template>
 
 <script>
-import { emailRegex } from "@/helper/constants";
 import authService from "@/services/authService";
+import { required, maxLength, email, sameAs, minLength } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -73,9 +97,41 @@ export default {
         phoneNumber: "",
         password: "",
       },
-      validationErrors: [],
       passwordConfirm: "",
     };
+  },
+
+  validations: {
+    credentials: {
+      username: {
+        required,
+        maxLength: maxLength(30),
+      },
+      firstName: {
+        required,
+        maxLength: maxLength(30),
+      },
+      lastName: {
+        required,
+        maxLength: maxLength(30),
+      },
+      emailAddress: {
+        required,
+        email,
+      },
+      password: {
+        required,
+        minLength: minLength(6),
+      },
+    },
+    passwordConfirm: {
+      required,
+      sameAs: sameAs((vm) => {
+        if (vm.credentials.password) {
+          return vm.credentials.password;
+        }
+      }),
+    },
   },
 
   beforeCreate() {
@@ -88,7 +144,8 @@ export default {
 
   methods: {
     async register() {
-      if (this.validateForm()) {
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
         const data = await authService.register(this.credentials);
         if (data.code == 200) {
           this.$store.dispatch("setToken", data.data.token);
@@ -102,38 +159,17 @@ export default {
             type: "error",
           });
         }
-      } else {
-        this.validationErrors.map((item) => {
-          this.$notify({
-            group: "notify",
-            text: item,
-            duration: 5000,
-            type: "error",
-          });
-        });
-        this.validationErrors = [];
       }
     },
 
-    validateForm() {
-      if (this.credentials.username === "" || this.credentials.username === undefined || this.credentials.username === null) this.validationErrors.push(this.$t("messages.error.usernameRequiredError"));
-      else if (this.credentials.username.length > 16) this.validationErrors.push(this.$t("messages.error.usernameMaxLengthError"));
+    validateState(name) {
+      const { $dirty, $error } = this.$v.credentials[name];
+      return $dirty ? !$error : null;
+    },
 
-      if (this.credentials.firstName === "" || this.credentials.firstName === undefined || this.credentials.firstName === null) this.validationErrors.push(this.$t("messages.error.firstNameRequiredError"));
-      else if (this.credentials.firstName.length > 16) this.validationErrors.push(this.$t("messages.error.firstNameMaxLengthError"));
-
-      if (this.credentials.lastName === "" || this.credentials.lastName === undefined || this.credentials.lastName === null) this.validationErrors.push(this.$t("messages.error.lastNameRequiredError"));
-      else if (this.credentials.lastName.length > 16) this.validationErrors.push(this.$t("messages.error.lastNameMaxLengthError"));
-
-      if (this.credentials.emailAddress === "" || this.credentials.emailAddress === undefined || this.credentials.emailAddress === null) this.validationErrors.push(this.$t("messages.error.emailRequiredError"));
-      else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push(this.$t("messages.error.emailWrongFormatError"));
-
-      if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push(this.$t("messages.error.passwordRequiredError"));
-      else if (this.credentials.password.length < 6 || this.credentials.password.length > 16) this.validationErrors.push(this.$t("messages.error.passwordLengthError"));
-      else if (this.credentials.password != this.passwordConfirm) this.validationErrors.push(this.$t("messages.error.passwordsDontMatchError"));
-
-      if (this.validationErrors.length > 0) return false;
-      return true;
+    validatePasswordConfirm() {
+      const { $dirty, $error } = this.$v.passwordConfirm;
+      return $dirty ? !$error : null;
     },
   },
 };
