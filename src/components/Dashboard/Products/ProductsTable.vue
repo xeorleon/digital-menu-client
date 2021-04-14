@@ -10,7 +10,7 @@
       </template>
     </b-table>
     <b-alert variant="warning" show v-else>Henüz ürün eklemediniz.</b-alert>
-    <new-product-modal v-on:productSaved="refreshProducts" />
+    <new-product-modal v-on:productSaved="refreshProducts()" />
   </div>
 </template>
 
@@ -40,7 +40,6 @@ export default {
     async fetchProducts() {
       const data = await productService.getAllProducts(this.$store.state.user.userId);
       if (data.code === 200) {
-        this.products = null;
         this.products = data.data;
       }
     },

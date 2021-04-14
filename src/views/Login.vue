@@ -104,6 +104,6 @@ export default {
 
 <style>
 .login-bg {
-  background-image: url("../assets/register-img.jpg");
+  background-image: url("../assets/login-img.jpg");
 }
 </style>
