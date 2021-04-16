@@ -22,3 +22,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+#### Todos
+- Kategori ve ürün tablolarında değişiklik yapıldığı zaman oluşan modal bugu
+- Uygulamaya ilk giriş anında oturum kontrolü
+- Navbar class atamaları refactor edilecek

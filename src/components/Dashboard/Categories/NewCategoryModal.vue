@@ -74,6 +74,7 @@ export default {
           };
           this.categoryModel = new FormData();
           this.imageUrl = "";
+          this.$v.$reset();
           this.$bvModal.hide("new-category");
         }
       }
