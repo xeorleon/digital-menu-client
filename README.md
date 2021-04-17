@@ -27,3 +27,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - Kategori ve ürün tablolarında değişiklik yapıldığı zaman oluşan modal bugu
 - Uygulamaya ilk giriş anında oturum kontrolü
 - Navbar class atamaları refactor edilecek
+- Aynı kullanıcı adı ile kayıtlanırken hata gösterilecek
+- İşletme için aynı slug kullanılırsa hata gösterilecek
+- Görsellerin dosya formatları kontrol edilecek
