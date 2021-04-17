@@ -84,7 +84,7 @@ export default {
       this.$v.$touch();
       if (!this.$v.$invalid) {
         this.productModel.append("Id", this.productData.id);
-        this.productModel.append("Price", this.productData.price.replace(".", ","));
+        this.productModel.append("Price", this.productData.price);
         this.productModel.append("NameTR", this.productData.nameTR);
         this.productModel.append("NameEN", this.productData.nameEN);
         this.productModel.append("DescriptionTR", this.productData.descriptionTR);
