@@ -53,7 +53,7 @@ const routes = [
     ],
   },,
   {
-    path: "/:companySlug",
+    path: "/menu/:companySlug",
     name: "Menu",
     component: () => import(/* webpackChunkName: "menu" */ "@/views/Menu.vue"),
   },

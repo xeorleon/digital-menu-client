@@ -97,7 +97,7 @@ export default {
 
   methods: {
     async generateQRCode() {
-      this.imageUrl = await QRCode.toDataURL(`https://localhost:5001/${this.company.slug}`, this.QRCodeOptions);
+      this.imageUrl = await QRCode.toDataURL(`https://localhost:5001/menu/${this.company.slug}`, this.QRCodeOptions);
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="product shadow">
+  <div class="product">
     <div class="product-image">
       <b-img :src="product.imagePath" :alt="product.name" fluid />
     </div>
@@ -22,10 +22,13 @@ export default {
   flex-direction: row;
   height: 90px;
   margin-bottom: 15px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0px 0px 3px 0px rgba(163, 164, 166, 1);
 }
 
 .product .product-image {
-  width: 30%;
+  width: 35%;
 }
 
 .product .product-image img {
