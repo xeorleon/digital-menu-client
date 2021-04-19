@@ -161,6 +161,11 @@ a.text-landing-primary:hover {
   outline-color: var(--color-landing-secondary) !important;
 }
 
+#languageSwitcher .dropdown-menu,
+#currencySwitcher .dropdown-menu {
+  min-width: 0 !important;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .authentication-wrapper::after {
     content: "";
