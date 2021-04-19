@@ -13,6 +13,8 @@ httpClient.interceptors.request.use(
     if (store.state.token) config.headers["Authorization"] = `Bearer ${store.state.token}`;
     if (cookie.get("lang")) config.headers["X-Language"] = cookie.get("lang").toLowerCase();
     else config.headers["X-Language"] = "tr";
+    if(cookie.get("currency")) config.headers["X-Currency"] = cookie.get("currency").toLowerCase();
+    else config.headers["X-Currency"] = "try";
 
     return config;
   },
