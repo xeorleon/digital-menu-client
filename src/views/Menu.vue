@@ -1,8 +1,8 @@
 <template>
   <div>
-    <app-navbar :logo="this.logoPath" />
+    <app-navbar :logo="this.logoPath" v-on:languageChanged="refreshMenu" />
     <b-container>
-      <category-swiper :categories="categories" :selectedCategoryId="selectedCategoryId" v-on:categorySwitched="switchCategory"/>
+      <category-swiper :categories="categories" :selectedCategoryId="selectedCategoryId" v-on:categorySwitched="switchCategory" />
       <div class="selected-category-overview">
         <h6>{{ selectedCategoryName }}</h6>
       </div>
@@ -30,19 +30,12 @@ export default {
       selectedCategoryId: "",
       selectedCategoryName: "",
       logoPath: null,
+
     };
   },
 
   async mounted() {
-    const companySlug = this.$route.params.companySlug;
-    const menu = await menuService.getMenu(companySlug);
-    if (menu.code === 200) {
-      this.categories = menu.data.categories;
-      this.logoPath = menu.data.companyLogo || null;
-      this.selectedCategoryId = this.categories[0].id;
-      this.selectedCategoryName = this.categories[0].name;
-      this.products = this.categories.find((category) => category.id === this.selectedCategoryId).products;
-    }
+    await this.fetchMenu();
   },
 
   methods: {
@@ -51,6 +44,22 @@ export default {
       const selectedCategory = this.categories.find((category) => category.id === this.selectedCategoryId);
       this.selectedCategoryName = selectedCategory.name;
       this.products = selectedCategory.products;
+    },
+
+    async refreshMenu() {
+      await this.fetchMenu();
+    },
+
+    async fetchMenu() {
+      const companySlug = this.$route.params.companySlug;
+      const menu = await menuService.getMenu(companySlug);
+      if (menu.code === 200) {
+        this.categories = menu.data.categories;
+        this.logoPath = menu.data.companyLogo || null;
+        this.selectedCategoryId = this.categories[0].id;
+        this.selectedCategoryName = this.categories[0].name;
+        this.products = this.categories.find((category) => category.id === this.selectedCategoryId).products;
+      }
     },
   },
 };
