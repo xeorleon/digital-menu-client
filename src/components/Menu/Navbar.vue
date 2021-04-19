@@ -5,7 +5,7 @@
         <b-img v-if="this.logo" :src="this.logo" class="menu-logo" fluid />
       </b-navbar-brand>
       <b-navbar-nav class="ml-auto">
-        <currency-switcher variant="landing-primary" :size="switcherSizes"/>
+        <currency-switcher variant="landing-primary" v-on:currencyChanged="$emit('currencyChanged')" :size="switcherSizes"/>
         <language-switcher variant="landing-primary" v-on:languageChanged="$emit('languageChanged')" :size="switcherSizes" />
       </b-navbar-nav>
     </b-container>

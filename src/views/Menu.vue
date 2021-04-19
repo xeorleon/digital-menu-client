@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-navbar :logo="this.logoPath" v-on:languageChanged="refreshMenu" />
+    <app-navbar :logo="this.logoPath" v-on:languageChanged="refreshMenu" v-on:currencyChanged="refreshMenu"/>
     <b-container>
       <category-swiper :categories="categories" :selectedCategoryId="selectedCategoryId" v-on:categorySwitched="switchCategory" />
       <div class="selected-category-overview">

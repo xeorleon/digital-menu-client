@@ -30,7 +30,8 @@ export default {
   methods: {
     setCurrency(currency) {
       this.$cookie.set("currency", currency.name, { expires: 365 });
-      this.selectedCurrency = currency
+      this.selectedCurrency = currency;
+      this.$emit("currencyChanged");
     },
   },
 };
