@@ -36,3 +36,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [ ] Aynı kullanıcı adı ile kayıtlanırken hata gösterilecek
 - [ ] İşletme için aynı slug kullanılırsa hata gösterilecek
 - [ ] Görsellerin dosya formatları kontrol edilecek
+- [ ] Ürün eklerken veya düzenlerken fiyat bugu

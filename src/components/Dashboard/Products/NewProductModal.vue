@@ -92,7 +92,7 @@ export default {
         this.productModel.append("NameEN", this.product.nameEN);
         this.productModel.append("DescriptionTR", this.product.descriptionTR);
         this.productModel.append("DescriptionEN", this.product.descriptionEN);
-        this.productModel.append("Price", this.product.price.replace(".", ","));
+        this.productModel.append("Price", this.product.price);
         this.productModel.append("CategoryId", this.product.categoryId);
 
         const data = await productService.insertProduct(this.$store.state.user.userId, this.productModel);
