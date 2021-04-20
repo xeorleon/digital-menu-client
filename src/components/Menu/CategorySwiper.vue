@@ -63,12 +63,4 @@ export default {
 .category-slide.active {
   border-bottom: 2px solid var(--color-landing-primary);
 }
-
-.selected-category-overview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
 </style>
