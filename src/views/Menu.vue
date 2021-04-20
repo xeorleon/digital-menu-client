@@ -5,7 +5,7 @@
       <category-swiper :categories="categories" :selectedCategoryId="selectedCategoryId" v-on:categorySwitched="switchCategory" />
       <div class="selected-category-overview">
         <h6>{{ selectedCategoryName }}</h6>
-        <p class="custom-text-muted">{{ selectedCategoryDescription }}</p>
+        <p v-if="selectedCategoryDescription" class="custom-text-muted">{{ selectedCategoryDescription }}</p>
       </div>
       <b-row>
         <b-col cols="12" md="4" v-for="product in products" :key="product.id" class="p-md-0 mr-md-3">
@@ -13,6 +13,7 @@
         </b-col>
       </b-row>
     </b-container>
+    <app-footer />
   </div>
 </template>
 
@@ -21,9 +22,10 @@ import menuService from "@/services/menuService";
 import AppNavbar from "@/components/Menu/Navbar.vue";
 import Product from "@/components/Menu/Product.vue";
 import CategorySwiper from "@/components/Menu/CategorySwiper.vue";
+import AppFooter from "@/components/Landing/Footer.vue";
 
 export default {
-  components: { AppNavbar, Product, CategorySwiper },
+  components: { AppNavbar, Product, CategorySwiper, AppFooter },
   data() {
     return {
       categories: [],
