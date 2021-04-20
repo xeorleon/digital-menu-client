@@ -68,8 +68,6 @@ export default {
         this.categoryModel.append("DescriptionTR", this.category.descriptionTR);
         this.categoryModel.append("DescriptionEN", this.category.descriptionEN);
 
-        console.log(this.categoryModel);
-
         const data = await categoryService.insertCategory(this.$store.state.user.userId, this.categoryModel);
         if (data.code === 200) {
           this.$emit("category-saved");
