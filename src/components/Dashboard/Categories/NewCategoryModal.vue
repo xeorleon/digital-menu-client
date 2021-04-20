@@ -11,6 +11,12 @@
       <b-form-group label="Kategori Adı (EN)" :state="!category.name_en ? null : validateState('name_en')" :invalid-feedback="!$v.category.name_tr.maxLength ? 'Kategori adı 50 karakterden uzun olamaz.' : ''">
         <b-input v-model="category.name_en" :state="!category.name_en ? null : validateState('name_en')" />
       </b-form-group>
+      <b-form-group label="Açıklama (TR)">
+        <b-textarea rows="4" v-model.trim="category.descriptionTR" />
+      </b-form-group>
+      <b-form-group label="Açıklama (EN)">
+        <b-textarea rows="4" v-model.trim="category.descriptionEN" />
+      </b-form-group>
       <b-form-group label="Kategori Görseli">
         <b-form-file @input="imagePreview" placeholder="Dosya Seç veya Sürükle" drop-placeholder="Buraya Bırak" accept="image/*" />
       </b-form-group>
@@ -33,6 +39,8 @@ export default {
       category: {
         name_tr: "",
         name_en: "",
+        descriptionTR: "",
+        descriptionEN: "",
       },
       categoryModel: new FormData(),
       imageUrl: "",
@@ -57,6 +65,10 @@ export default {
       if (!this.$v.$invalid) {
         this.categoryModel.append("NameTR", this.category.name_tr);
         this.categoryModel.append("NameEN", this.category.name_en);
+        this.categoryModel.append("DescriptionTR", this.category.descriptionTR);
+        this.categoryModel.append("DescriptionEN", this.category.descriptionEN);
+
+        console.log(this.categoryModel);
 
         const data = await categoryService.insertCategory(this.$store.state.user.userId, this.categoryModel);
         if (data.code === 200) {

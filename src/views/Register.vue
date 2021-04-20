@@ -90,14 +90,14 @@ export default {
   data() {
     return {
       credentials: {
-        username: "",
-        firstName: "",
-        lastName: "",
-        emailAddress: "",
-        phoneNumber: "",
-        password: "",
+        username: "erenkaya",
+        firstName: "eren",
+        lastName: "kaya",
+        emailAddress: "erenkaya2580@gmail.com",
+        phoneNumber: "123 ",
+        password: "asdasd",
       },
-      passwordConfirm: "",
+      passwordConfirm: "asdasd",
     };
   },
 

@@ -6,10 +6,16 @@
         :state="validateState('nameTR')"
         :invalid-feedback="!$v.categoryData.nameTR.required ? 'Türkçe varsayılan dil olduğu için zorunludur.' : !$v.categoryData.nameTR.maxLength ? 'Kategori adı 50 karakterden uzun olamaz.' : ''"
       >
-        <b-input v-model="categoryData.nameTR" :state="validateState('nameTR')" />
+        <b-input v-model.trim="categoryData.nameTR" :state="validateState('nameTR')" />
       </b-form-group>
       <b-form-group label="Kategori Adı (EN)" :state="!categoryData.nameEN ? null : validateState('nameEN')" :invalid-feedback="!$v.categoryData.nameEN.maxLength ? 'Kategori adı 50 karakterden uzun olamaz.' : ''">
-        <b-input v-model="categoryData.nameEN" :state="!categoryData.nameEN ? null : validateState('nameEN')" />
+        <b-input v-model.trim="categoryData.nameEN" :state="!categoryData.nameEN ? null : validateState('nameEN')" />
+      </b-form-group>
+      <b-form-group label="Açıklama (TR)">
+        <b-textarea rows="4" v-model.trim="categoryData.descriptionTR" />
+      </b-form-group>
+      <b-form-group label="Açıklama (EN)">
+        <b-textarea rows="4" v-model.trim="categoryData.descriptionEN" />
       </b-form-group>
       <b-form-group label="Kategori Görseli">
         <b-form-file @input="imagePreview" placeholder="Dosya Seç veya Sürükle" drop-placeholder="Buraya Bırak" accept="image/*" />
@@ -36,6 +42,8 @@ export default {
         id: this.category.id,
         nameTR: this.category.nameTR,
         nameEN: this.category.nameEN,
+        descriptionTR: this.category.descriptionTR,
+        descriptionEN: this.category.descriptionEN,
         imagePath: this.category.imagePath,
       },
 
@@ -62,6 +70,8 @@ export default {
         this.categoryModel.append("Id", this.categoryData.id);
         this.categoryModel.append("NameTR", this.categoryData.nameTR);
         this.categoryModel.append("NameEN", this.categoryData.nameEN);
+        this.categoryModel.append("DescriptionTR", this.categoryData.descriptionTR);
+        this.categoryModel.append("DescriptionEN", this.categoryData.descriptionEN);
 
         const categoryData = await categoryService.updateCategory(this.$store.state.user.userId, this.categoryModel);
         if (categoryData.code === 200) {
