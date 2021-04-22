@@ -1,8 +1,8 @@
-import api from "./api";
+import client from "./httpClient";
 
 export default {
   async getSubscriptionTypes() {
-    var response = await api.get("/subscription/types");
+    const response = await client.get("/subscription/types");
     return response.data;
   },
 };

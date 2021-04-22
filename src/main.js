@@ -13,7 +13,7 @@ import "@/styles/variables.css";
 import "@/styles/styles.css";
 import i18n from "./i18n";
 import VueCookie from "vue-cookie";
-import authService from "@/services/authService";
+import Vuelidate from "vuelidate";
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -23,6 +23,7 @@ Vue.use(VueCookie);
 Vue.use(VuePageTitle, {
   suffix: " | Digital Menu",
 });
+Vue.use(Vuelidate);
 
 new Vue({
   router,

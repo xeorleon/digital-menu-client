@@ -1,11 +1,12 @@
 <template>
-  <sidebar-menu :menu="sidenavOptions.menu" :relative="sidenavOptions.isRelative" :width="sidenavOptions.width" :hideToggle="sidenavOptions.hideToggle" :collapsed="sidenavOptions.collapsed" />
+  <sidebar-menu :menu="sidenavOptions.menu" :relative="false" :width="sidenavOptions.width" :hideToggle="sidenavOptions.hideToggle" :collapsed="sidenavOptions.collapsed" />
 </template>
 
 <script>
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import { SidebarMenu } from "vue-sidebar-menu";
 import authService from "@/services/authService";
+import "@fortawesome/fontawesome-free/css/all.min.css"
 export default {
   components: {
     SidebarMenu,
@@ -25,6 +26,26 @@ export default {
             icon: "lnr lnr-home",
           },
           {
+            href: "/products",
+            title: "Ürünler",
+            icon: "fas fa-utensils",
+          },
+          {
+            href: "/product-groups",
+            title: "Ürün Grupları",
+            icon: "fas fa-utensils",
+          },
+          {
+            href: "/categories",
+            title: "Kategoriler",
+            icon: "fas fa-layer-group",
+          },
+          {
+            href: "/qr",
+            title: "QR Kod",
+            icon: "fas fa-qrcode",
+          },
+          {
             href: "/account",
             title: "Profil",
             icon: "lnr lnr-user",
@@ -41,11 +62,6 @@ export default {
         collapsed: window.outerWidth < 768,
       },
     };
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.withChanged);
-    var logoutBtn = document.getElementsByClassName("logout")[0];
-    logoutBtn.removeEventListener("click", this.logout);
   },
   mounted() {
     window.addEventListener("resize", this.withChanged, false);

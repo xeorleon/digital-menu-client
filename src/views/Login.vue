@@ -19,16 +19,16 @@
             <!-- / Logo -->
 
             <h4 class="text-center custom-text-muted font-weight-normal mt-5 mb-0">{{ $t("loginView.formTitle") }}</h4>
-            <form class="my-5" @submit="login">
-              <b-form-group :label="this.$t('username')">
-                <b-input v-model="credentials.userName" />
+            <form class="my-5" @submit.prevent="login">
+              <b-form-group :label="this.$t('username')" :state="validateState('userName')" :invalid-feedback="$v.credentials.userName.$error ? $t('messages.error.usernameRequiredError') : ''">
+                <b-input v-model="credentials.userName" :state="validateState('userName')" />
               </b-form-group>
-              <b-form-group>
+              <b-form-group :state="validateState('password')" :invalid-feedback="$v.credentials.password.$error ? $t('messages.error.passwordRequiredError') : ''">
                 <div slot="label" class="d-flex justify-content-between align-items-end">
                   <div>{{ $t("password") }}</div>
                   <b-link to="/forgot-password" class="d-block small text-landing-primary">{{ $t("forgotPassword") }}</b-link>
                 </div>
-                <b-input type="password" v-model="credentials.password" />
+                <b-input type="password" v-model="credentials.password" :state="validateState('password')"/>
               </b-form-group>
 
               <div class="d-flex justify-content-between align-items-center m-0">
@@ -48,18 +48,28 @@
 </template>
 
 <script>
-// import { emailRegex } from "@/helper/constants";
 import authService from "@/services/authService";
+import { required } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
       credentials: {
-        userName: "asd",
-        password: "123456",
+        userName: "erenkaya",
+        password: "asdasd",
         isPersistent: false,
       },
-      validationErrors: [],
     };
+  },
+
+  validations: {
+    credentials: {
+      userName: {
+        required,
+      },
+      password: {
+        required,
+      },
+    },
   },
 
   beforeCreate() {
@@ -71,37 +81,22 @@ export default {
   },
 
   methods: {
-    async login(event) {
-      event.preventDefault();
-
-      if (this.validateForm()) {
-        var data = await authService.authenticate(this.credentials);
+    async login() {
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        const data = await authService.authenticate(this.credentials);
         if (data.code === 200) {
           this.$store.dispatch("setToken", data.data.token);
           this.$store.dispatch("setUser", data.data.user);
           this.$store.dispatch("setPersistent", this.credentials.isPersistent);
           this.$router.push("/dashboard");
         }
-      } else {
-        this.validationErrors.map((item) => {
-          this.$notify({
-            group: "notify",
-            text: item,
-            duration: 5000,
-            type: "error",
-          });
-        });
-        this.validationErrors = [];
       }
     },
 
-    validateForm() {
-      if (this.credentials.userName === "" || this.credentials.userName === undefined || this.credentials.userName === null) this.validationErrors.push(this.$t("messages.error.usernameRequiredError"));
-      // else if (!emailRegex.test(this.credentials.emailAddress)) this.validationErrors.push("E-posta doğru formatta olmalidir");
-      if (this.credentials.password === "" || this.credentials.password === undefined || this.credentials.password === null) this.validationErrors.push(this.$t("messages.error.passwordRequiredError"));
-
-      if (this.validationErrors.length > 0) return false;
-      return true;
+    validateState(name) {
+      const { $dirty, $error } = this.$v.credentials[name];
+      return $dirty ? !$error : null;
     },
   },
 };
@@ -109,6 +104,6 @@ export default {
 
 <style>
 .login-bg {
-  background-image: url("../assets/register-img.jpg");
+  background-image: url("../assets/login-img.jpg");
 }
 </style>

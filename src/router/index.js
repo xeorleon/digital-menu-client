@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Landing from "../views/Landing.vue";
 import Dashboard from "../views/Dashboard/Dashboard.vue";
-import Layout from "../components/Layout";
+import Layout from "../components/Dashboard/Layout.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,8 +28,7 @@ const routes = [
   },
   {
     path: "/dashboard",
-    component: Layout, // dashboardın layout'unu belirtiyoruz ve layout içinde router view diyip gönderdigimiz viewları
-    //Layoutun içinde gösteriyoruz.
+    component: Layout,
     children: [
       {
         path: "/",
@@ -37,9 +36,30 @@ const routes = [
       },
       {
         path: "/account",
-        component: () => import(/* webpackChunkName: "account" */ "@/views/Dashboard/Account.vue")
-      }
+        component: () => import(/* webpackChunkName: "account" */ "@/views/Dashboard/Account.vue"),
+      },
+      {
+        path: "/categories",
+        component: () => import(/* webpackChunkName: "categories" */ "@/views/Dashboard/Categories.vue"),
+      },
+      {
+        path: "/products",
+        component: () => import(/* webpackChunkName: "products" */ "@/views/Dashboard/Products.vue"),
+      },
+      {
+        path: "/product-groups",
+        component: () => import(/* webpackChunkName: "product-groups" */ "@/views/Dashboard/ProductGroups.vue"),
+      },
+      {
+        path: "/qr",
+        component: () => import(/* webpackChunkName: "qr" */ "@/views/Dashboard/Qr.vue"),
+      },
     ],
+  },,
+  {
+    path: "/menu/:companySlug",
+    name: "Menu",
+    component: () => import(/* webpackChunkName: "menu" */ "@/views/Menu.vue"),
   },
 ];
 
