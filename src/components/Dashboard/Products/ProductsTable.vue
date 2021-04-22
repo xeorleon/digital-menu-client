@@ -11,7 +11,6 @@
     </b-table>
     <b-alert variant="warning" show v-else>Henüz ürün eklemediniz.</b-alert>
     <new-product-modal v-on:productSaved="refreshProducts()" />
-    <new-product-group-modal v-on:productSaved="refreshProducts()" />
   </div>
 </template>
 
@@ -19,10 +18,9 @@
 import NewProductModal from "@/components/Dashboard/Products/NewProductModal.vue";
 import ProductDetailsButton from "@/components/Dashboard/Products/ProductDetailsButton.vue";
 import productService from "@/services/productService";
-import NewProductGroupModal from "@/components/Dashboard/Products/NewProductGroupModal.vue";
 
 export default {
-  components: { NewProductModal, ProductDetailsButton, NewProductGroupModal },
+  components: { NewProductModal, ProductDetailsButton },
   data() {
     return {
       products: [],

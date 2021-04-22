@@ -18,7 +18,7 @@
         <b-form-select v-model="productGroup.categoryId" :options="categories" :state="validateState('categoryId')" />
       </b-form-group>
       <b-form-group label="Ürünler">
-        <b-form-select v-model="productGroup.products" :options="products" multiple />
+        <multiselect v-model="productGroup.products" :options="products" :multiple="true" placeholder="Ara" track-by="value" label="text" selectLabel="Ürünü Ekle" />
       </b-form-group>
       <b-form-group label="Açıklama (TR)">
         <b-textarea rows="4" v-model.trim="productGroup.descriptionTR" />
@@ -42,8 +42,11 @@
 import { required, maxLength } from "vuelidate/lib/validators";
 import productService from "@/services/productService";
 import categoryService from "@/services/categoryService";
+import Multiselect from "vue-multiselect";
+import "vue-multiselect/dist/vue-multiselect.min.css";
 
 export default {
+  components: { Multiselect },
   data() {
     return {
       productGroup: {

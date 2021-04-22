@@ -47,6 +47,10 @@ const routes = [
         component: () => import(/* webpackChunkName: "products" */ "@/views/Dashboard/Products.vue"),
       },
       {
+        path: "/product-groups",
+        component: () => import(/* webpackChunkName: "product-groups" */ "@/views/Dashboard/ProductGroups.vue"),
+      },
+      {
         path: "/qr",
         component: () => import(/* webpackChunkName: "qr" */ "@/views/Dashboard/Qr.vue"),
       },
